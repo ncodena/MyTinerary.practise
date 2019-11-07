@@ -1,0 +1,81 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 20vmin;
+}
+
+.landing-header {
+  background-color: white;
+  height: 22vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.landing-header{
+  background-color:rgb(30, 34, 36);
+}
+.App-logo{
+  background-color: transparent;
+
+}
+.fullBody{
+  display: flex;
+  flex-direction: column;
+  z-index: 6;
+  position: absolute;
+}
+
+.linksContainer{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+}
+
+.h2{
+  font-size: 250%;
+}
+.landing-body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 78vh;
+}
+.arrowIcon{
+  width: 20%;
+}
+.homeIcon{
+  width: 13%;
+}
+
+.introText{
+  width: 43%;
+  background-color: white ;
+  padding: 4%;
+  opacity: 0.5;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+.question{
+  font-weight: bold;
+  font-size: 118%;
+  animation: gradientColor 4s linear infinite;
+  transition: transform 7s;
+
+}
+@keyframes gradientColor {
+  from {color:rgb(37, 6, 6);}
+  to {color: rgb(230, 27, 27);}
+}
+a{
+  text-decoration: none;
+  color: whitesmoke;
+}
