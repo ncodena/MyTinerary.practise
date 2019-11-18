@@ -1,8 +1,3 @@
-import fetch from 'cross-fetch'
-
-const redux = require('redux')
-const createStore = redux.createStore
-
 const REQUEST_CITIES = 'REQUEST_CITIES'
 const RECEIVE_CITIES = 'RECEIVE_CITIES'
 const FAILURE_FETCHING_CITIES = 'FAILURE_FETCHING_CITIES '
@@ -16,12 +11,12 @@ const initialState = {
 
 const requestCities = () => {
     return{
-        type: REQUEST_CITIES,
+        type: REQUEST_CITIES
         
     }   
 }
 
-const receiveCities = () => {
+const receiveCities = cities => {
     return{
         type: RECEIVE_CITIES,
         payload: cities
@@ -55,7 +50,7 @@ const reducer = (state = initialState, action) => {
         case FAILURE_FETCHING_CITIES:
             return {
               loading: false,
-              users: [],
+              cities: [],
               error: action.payload
 
             }
@@ -66,21 +61,21 @@ const reducer = (state = initialState, action) => {
 
 
 
-export function fetchPosts(subreddit) {
+export function fetchCities() {
     return function(dispatch){
 
-        dispatch(requestPosts(subreddit))
+        dispatch(requestCities)
 
         return fetch('http://localhost:5000/cities/all')
-            .then(
-                response => response.json(),
+            .then(response => {
+                const cities = response.data.map(city => city.id)
+                dispatch(receiveCities(cities))
 
-                error => console.log('An errorocurred, error')
-            )
-            .then(json =>
-                dispatch(receivePosts (subreddit, json))
-                )
+            })
+            .catch(error => {
+                dispatch(failureGettingCities(error.message))
+
+            })
     }
 }
 
-const store = createStore(reducer)
