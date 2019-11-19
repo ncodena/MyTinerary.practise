@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/styles/index.css';
 import Landing from "./views/Landing"
-// import Cities from "./views/Cities"
-import { Route, BrowserRouter as Router } from 'react-router-dom'
 import Cities from './views/Cities';
 
-import { composeWithDevTools } from "redux-devtools-extension";
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+
+
+// import { composeWithDevTools } from "redux-devtools-extension";
 import{ createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from "redux-thunk";
 
 import rootReducer from './store/reducers/rootReducer';
 
-
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  applyMiddleware(thunk)
 );
 
 const router = (

@@ -51,6 +51,12 @@
 .arrowIcon{
   width: 20%;
 }
+.linkToCities{
+  text-decoration: none;
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+}
 .homeIcon{
   width: 13%;
 }

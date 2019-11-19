@@ -26,6 +26,7 @@ router.get('/all',
 //     .catch(err => {
 //         res.status(500).send("Server error")})
 // });
+
 router.post('/', (req, res) => {
     const newCity = new cityModel({
         name: req.body.name,
