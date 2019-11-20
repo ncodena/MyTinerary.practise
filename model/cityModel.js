@@ -8,6 +8,6 @@ const citySchema = new mongoose.Schema({
     country:{
         type: String,
         required: true
-    }
+    },
 })
 module.exports = mongoose.model('city', citySchema)

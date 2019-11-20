@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './assets/styles/index.css';
 import Landing from "./views/Landing"
 import Cities from './views/Cities';
+import Itineraries from './views/Cities'
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
@@ -26,6 +27,7 @@ const router = (
         <div className="darkFilter"></div>
       <Route exact path="/" component={Landing} />
       <Route exact path="/cities" component={Cities} />
+      <Route exact path="/itineraries" component={Itineraries} />
     </div>
   </Router>  
   </Provider>  

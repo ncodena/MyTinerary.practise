@@ -4,6 +4,7 @@ const router = express.Router()
 
 const cityModel = require('../model/cityModel')
 
+
 router.get('/all',
 (req, res) => {
     cityModel.find({})
@@ -40,6 +41,16 @@ router.post('/', (req, res) => {
             res.status(500).send(err)
         }
     })
+});
+
+router.get('/:name',
+    (req, res) => {
+        let cityRequested = req.params.name;
+        cityModel.findOne({name: cityRequested})
+            .then(city => {
+                res.send(city)
+            })
+            .catch(err => console.log(err));
 });
 
 
