@@ -2,9 +2,6 @@ import {REQUEST_CITIES} from '../actions/cityActions';
 import {RECEIVE_CITIES} from '../actions/cityActions';
 import {FAILURE_FETCHING_CITIES} from '../actions/cityActions';
 
-// const REQUEST_CITIES = 'REQUEST_CITIES'
-// const RECEIVE_CITIES = 'RECEIVE_CITIES'
-// const FAILURE_FETCHING_CITIES = 'FAILURE_FETCHING_CITIES '
 
 const initialState = {
     loading: false,
