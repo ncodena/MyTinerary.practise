@@ -2,7 +2,6 @@
     position: absolute;
     z-index: 600;
     width: 100%;
-    height: 100vh;
 }
 
 input{
@@ -20,18 +19,17 @@ form{
 }
 
 ul{
-    height: 277vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     list-style: none;
     margin-left: -11%;
-    margin-top: 52%;
+    margin-top: 22%;
 }
 
 li{
     list-style: none;
-    padding: 10% 19% 12%;
+    padding: 2% 13%;
     margin-bottom: 5%;
 }
 .homeIcon{
@@ -39,4 +37,21 @@ li{
 }
 button.btn.btn-dark{
     margin: 2% 2% 2% 2%;
+}
+
+.cityImage{
+    width: 133%;
+    margin-left: -16%;
+    max-height: 25vh;
+}
+.nameContainer{
+    height: 2vh;
+}
+.errorMessage{
+    height: 87vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: whitesmoke;
 }

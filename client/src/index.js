@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './assets/styles/index.css';
 import Landing from "./views/Landing"
 import Cities from './views/Cities';
-import Itineraries from './views/Cities'
+import Itineraries from './views/Itineraries'
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 

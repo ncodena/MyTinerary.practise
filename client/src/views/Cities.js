@@ -31,23 +31,30 @@ filterCities() {
 
 }
 
+
+
 gettingCitiesList() {
     let citiesList = this.filterCities().map(city=> {
     return <button type="button" className="btn btn-dark">
         <li key={city._id}>
-            <p>{city.name} - {city.country}</p>
+            <div>
+                <img className="cityImage" src={city.img} alt=""/>
+                <p className="nameContainer">{city.name} - {city.country}</p>    
+            </div>
+            
         </li>
         </button>    
     })
     if (citiesList.length === 0) {
     citiesList = (
-    <div> No Results Found </div>
+    <div className="errorMessage"> NO RESULTS FOUND </div>
     )}
     return citiesList
 }
     
 
 render () {
+    console.log(this.props.cities)
     if (!this.props.loading)
      return (
             
@@ -62,13 +69,14 @@ render () {
                
             
 
-            <ul>
-                {this.gettingCitiesList()}   
-            </ul>
+            <div>
+                <ul>
+                    {this.gettingCitiesList()}   
+                </ul>
 
-
+            </div>
+            
             {/* <img src={home} className="homeIcon" alt="home-icon"></img>   */}
-
 
         </div>
      )

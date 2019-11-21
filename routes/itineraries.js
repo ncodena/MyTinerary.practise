@@ -6,6 +6,7 @@ const itinerarySchema = require('../model/Itinerary')
 
 router.get('/all',
     (req, res) => {
+		// console.log(req)
         itinerarySchema.find({})
             .then(files => {
                 res.send(files)
@@ -16,7 +17,7 @@ router.get('/all',
 router.get('/:cityId',
 	(req, res) => {
   		let cityRequested = req.params.cityId;
-  		itinerarySchema.findOne({ cityId: cityRequested })
+  		itinerarySchema.find({ cityId: cityRequested })
 			.then(city => {
 				res.send(city)
 			})

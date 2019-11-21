@@ -4,7 +4,7 @@ import {FAILURE_FETCHING_ITINERARIES} from '../actions/itineraryAction';
 
 const initialState = {
     loading: false,
-    cities: [],
+    itineraries: [],
     error: ''
 }
 
@@ -20,7 +20,7 @@ export default function reducer (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                cities: action.itineraries,
+                itineraries: action.itineraries,
 
             }
         case FAILURE_FETCHING_ITINERARIES:
