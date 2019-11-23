@@ -4,6 +4,7 @@ import './assets/styles/index.css';
 import Landing from "./views/Landing"
 import Cities from './views/Cities';
 import Itineraries from './views/Itineraries'
+import home from './assets/images/homeIcon.png'
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
@@ -28,7 +29,11 @@ const router = (
       <Route exact path="/" component={Landing} />
       <Route exact path="/cities" component={Cities} />
       <Route exact path="/itineraries" component={Itineraries} />
+      <div className="footer">
+        <img src={home} className="homeIcon" alt="home-icon"></img>   
+      </div>
     </div>
+
   </Router>  
   </Provider>  
 );

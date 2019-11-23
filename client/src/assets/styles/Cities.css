@@ -1,6 +1,6 @@
 .body{
     position: absolute;
-    z-index: 600;
+    z-index: 60;
     width: 100%;
 }
 
@@ -9,6 +9,7 @@ input{
     width: 60%;
     text-align: center;
     margin-top: 7%;
+    z-index: 7;
 }
 
 form{
@@ -16,36 +17,38 @@ form{
     display: flex;
     overflow: scroll;
     width: 100%;
+    margin-top:20%;
 }
 
-ul{
+.citiesList{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    list-style: none;
-    margin-left: -11%;
     margin-top: 22%;
 }
 
-li{
-    list-style: none;
-    padding: 2% 13%;
-    margin-bottom: 5%;
+.card{
+    display: flex;
+    justify-content: flex-start;
 }
+
 .homeIcon{
     position: fixed;
 }
 button.btn.btn-dark{
     margin: 2% 2% 2% 2%;
+    padding: 2%;
 }
 
 .cityImage{
-    width: 133%;
-    margin-left: -16%;
-    max-height: 25vh;
+    width: 100%;
+    max-height: 27vh;
 }
 .nameContainer{
-    height: 2vh;
+    height: 1vh;
+    position: absolute;
+    width: 100%;
+    color: white;
 }
 .errorMessage{
     height: 87vh;

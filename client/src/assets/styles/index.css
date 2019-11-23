@@ -34,3 +34,17 @@ code {
   top: 0;
   left: 0;
 }
+
+.homeIcon{
+  width: 13%;
+}
+
+.footer{
+  position: fixed;
+  z-index: 80;
+  overflow: scroll;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}

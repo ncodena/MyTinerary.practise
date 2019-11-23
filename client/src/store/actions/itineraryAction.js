@@ -27,10 +27,10 @@ const failureGettingItineraries = error => {
 }
 
 
-export function fetchItineraries() {
+export function fetchItineraries(cityId) {
     return function (dispatch) {
         dispatch(requestItineraries())
-        return fetch('http://localhost:5000/itineraries/all')
+        return fetch('http://localhost:5000/itineraries/'+cityId)
             .then(response => response.json()) 
             .then (json => {
                 dispatch(receiveItineraries(json)) 

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../assets/styles/Cities.css';
 import { connect } from 'react-redux';
 import * as cityActions from "../store/actions/cityActions.js"
+import * as itineraryAction from "../store/actions/itineraryAction.js"
+import { Link } from 'react-router-dom'
 // import home from '../assets/images/homeIcon.png';
 
 
@@ -35,15 +37,14 @@ filterCities() {
 
 gettingCitiesList() {
     let citiesList = this.filterCities().map(city=> {
-    return <button type="button" className="btn btn-dark">
-        <li key={city._id}>
-            <div>
-                <img className="cityImage" src={city.img} alt=""/>
-                <p className="nameContainer">{city.name} - {city.country}</p>    
-            </div>
-            
-        </li>
-        </button>    
+    return <Link to="/itineraries">
+            <button type="button" className="btn btn-dark" onClick={() => this.props.fetchItineraries(city._id)}>
+                <div className="card">
+                    <img className="cityImage" src={city.img} alt=""/>
+                    <p className="nameContainer">{city.name} - {city.country}</p>    
+                </div>
+            </button> 
+        </Link>   
     })
     if (citiesList.length === 0) {
     citiesList = (
@@ -69,11 +70,8 @@ render () {
                
             
 
-            <div>
-                <ul>
-                    {this.gettingCitiesList()}   
-                </ul>
-
+            <div className="citiesList">
+                {this.gettingCitiesList()}   
             </div>
             
             {/* <img src={home} className="homeIcon" alt="home-icon"></img>   */}
@@ -96,7 +94,8 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps =(dispatch) => {
     return {
-        fetchCities: () => dispatch(cityActions.fetchCities())
+        fetchCities: () => dispatch(cityActions.fetchCities()),
+        fetchItineraries: (cityId) => dispatch(itineraryAction.fetchItineraries(cityId))
     }
 }
 
