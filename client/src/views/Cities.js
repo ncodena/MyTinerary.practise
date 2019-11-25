@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as cityActions from "../store/actions/cityActions.js"
 import * as itineraryAction from "../store/actions/itineraryAction.js"
 import { Link } from 'react-router-dom'
+import CityCard from '../components/cityCard.js';
 // import home from '../assets/images/homeIcon.png';
 
 
@@ -34,14 +35,14 @@ filterCities() {
 }
 
 
-
 gettingCitiesList() {
     let citiesList = this.filterCities().map(city=> {
     return <Link to="/itineraries">
             <button type="button" className="btn btn-dark" onClick={() => this.props.fetchItineraries(city._id)}>
                 <div className="card">
-                    <img className="cityImage" src={city.img} alt=""/>
-                    <p className="nameContainer">{city.name} - {city.country}</p>    
+                    <CityCard img={city.img} name={city.name} country={city.country} key={city._id}/>
+                    {/* <img className="cityImage" src={city.img} alt=""/>
+                    <p className="nameContainer">{city.name} - {city.country}</p>     */}
                 </div>
             </button> 
         </Link>   
@@ -68,10 +69,11 @@ render () {
                
             </form>            
                
-            
 
             <div className="citiesList">
-                {this.gettingCitiesList()}   
+
+                {this.gettingCitiesList()}
+                
             </div>
             
             {/* <img src={home} className="homeIcon" alt="home-icon"></img>   */}
