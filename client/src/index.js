@@ -28,7 +28,7 @@ const router = (
         <div className="darkFilter"></div>
       <Route exact path="/" component={Landing} />
       <Route exact path="/cities" component={Cities} />
-      <Route exact path="/itineraries" component={Itineraries} />
+      <Route path="/itineraries" component={Itineraries} />
       <div className="footer">
         <img src={home} className="homeIcon" alt="home-icon"></img>   
       </div>

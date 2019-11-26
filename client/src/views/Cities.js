@@ -37,12 +37,10 @@ filterCities() {
 
 gettingCitiesList() {
     let citiesList = this.filterCities().map(city=> {
-    return <Link to="/itineraries">
+    return <Link to={`/itineraries?city=${city.name}`}>
             <button type="button" className="btn btn-dark" onClick={() => this.props.fetchItineraries(city._id)}>
                 <div className="card">
                     <CityCard img={city.img} name={city.name} country={city.country} key={city._id}/>
-                    {/* <img className="cityImage" src={city.img} alt=""/>
-                    <p className="nameContainer">{city.name} - {city.country}</p>     */}
                 </div>
             </button> 
         </Link>   
