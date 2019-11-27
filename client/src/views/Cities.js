@@ -34,13 +34,18 @@ filterCities() {
 
 }
 
+selectCityIntineraries(city) {
+    this.props.fetchItineraries(city._id)
+    this.props.selectedCity(city)
+}
+
 
 gettingCitiesList() {
     let citiesList = this.filterCities().map(city=> {
     return <Link to={`/itineraries?city=${city.name}`}>
-            <button type="button" className="btn btn-dark" onClick={() => this.props.fetchItineraries(city._id)}>
+            <button type="button" className="btn btn-dark" onClick={() => this.selectCityIntineraries(city) }>
                 <div className="card">
-                    <CityCard img={city.img} name={city.name} country={city.country} key={city._id}/>
+                    <CityCard city={city} key={city._id}/>
                 </div>
             </button> 
         </Link>   
@@ -95,7 +100,8 @@ const mapStatetoProps = (state) => {
 const mapDispatchToProps =(dispatch) => {
     return {
         fetchCities: () => dispatch(cityActions.fetchCities()),
-        fetchItineraries: (cityId) => dispatch(itineraryAction.fetchItineraries(cityId))
+        fetchItineraries: (cityId) => dispatch(itineraryAction.fetchItineraries(cityId)),
+        selectedCity: (city) => dispatch(cityActions.selectedCity(city))
     }
 }
 

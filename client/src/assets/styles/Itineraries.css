@@ -1,0 +1,56 @@
+.body{
+    position: absolute;
+    z-index: 60;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cityChildComponent{
+    display: flex;
+    justify-content: center;
+}
+.accordion{
+    margin-top: 15%;
+    background-color: white;
+    
+}
+.accordion-heading{
+    display: flex;
+    justify-content: center;
+}
+.infoContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.buttonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+h2{
+    display: flex;
+    justify-content: center;
+}
+.cityImage{
+    width: 100%;
+    max-height: 27vh;
+}
+.imageContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+.itineraryImage{
+    width: 50%;
+}
+.nameContainer{
+    background: black;
+    height: 5%;
+    position: absolute;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+}

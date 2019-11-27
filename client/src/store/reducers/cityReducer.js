@@ -6,7 +6,8 @@ import {FAILURE_FETCHING_CITIES} from '../actions/cityActions';
 const initialState = {
     loading: false,
     cities: [],
-    error: ''
+    error: '',
+    city: {}
 }
 
 export default function reducer (state = initialState, action) {
@@ -23,6 +24,11 @@ export default function reducer (state = initialState, action) {
                 loading: false,
                 cities: action.cities,
 
+            }
+        case "SELECTED_CITY":
+            return {
+                ...state,
+                city: action.city
             }
         case FAILURE_FETCHING_CITIES:
             return {

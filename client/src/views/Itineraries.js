@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import '../assets/styles/Itineraries.css';
 import { connect } from 'react-redux';
-// import CityCard from '../components/cityCard.js';
+import CityCard from '../components/cityCard.js';
 
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 
 class Itineraries extends Component{
@@ -20,49 +19,35 @@ class Itineraries extends Component{
         // this.props.fetchItineraries()
             // .then(()=> console.log(this.props.cities))
     
-    }
-
-    // rather than fetching cities again each time, figure out ¨how to use redux to send information between sibling components
-    // gettingCitiesList() {
-    //     let citiesList = this.props.cities.map(city=> {
-    //     return <button type="button" className="btn btn-dark">
-    //                 <div className="card">
-    //                     <CityCard img={city.img} name={city.name} country={city.country} key={city._id}/>
-    //                 </div>
-    //             </button>    
-    //     })
-    //     return citiesList
-    // }  
+    } 
 
     gettingItinerariesList() {
+        
         let itinerariesList = this.props.itineraries.map(itinerary=> {
-        return <div>
-            <Collapse key={itinerary._id}>
-                <div className="accordion-heading">
-                    <h2>{itinerary.title}</h2>
-                    <p>{itinerary.rating} {itinerary.price} {itinerary.duration}</p>
-                </div>
-                <Card>
-                    <CardBody>
-                        <img src={itinerary.img} alt=""/>
-                    </CardBody>
-                </Card>
-                <Button color="primary" style={{ marginBottom: '1rem' }}>Read More</Button>
-            </Collapse>
-            </div>
-            {/* <div key={itinerary._id}>
-                <div>
-                    <img src={itinerary.img} alt=""/>
-                    <p>{itinerary.title}</p>
-                    <p>{itinerary.rating} {itinerary.title} {itinerary.title}</p>    
+        return <div className="accordion" id="accordion2" key={itinerary._id}>
+                <div className="accordion-group">
+                    <div className="accordion-heading">
+                        <div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">
+                            <h2>{itinerary.title}</h2>
+                            <p className="infoContainer">{itinerary.rating} {itinerary.duration} {itinerary.price}</p>
+                            <div className="imageContainer">
+                                <img className="itineraryImage" src={itinerary.img} alt=""/> 
+                            </div>
+                             
+                        </div>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                        <p>djdjdjdjdjdjjjjjjjjjjjjjjjjj</p>
+                        
+                    </div>
+                    <div className="buttonContainer">
+                        <button class="SeeMore2" data-toggle="collapse" href="#collapseTwo">See More</button>
+                    </div>
+                    
                 </div>   
-            </div>  */}
-        
-        
-         
+            </div>  
         })
         return itinerariesList
-
     }
 
     render () {
@@ -70,8 +55,10 @@ class Itineraries extends Component{
         
         return(
             <div className= "body">
-                {/* <CityCard img={city.img} name={city.name} country={city.country} key={city._id}/> */}
-                <div>
+                <div className="cityChildComponent">
+                    <CityCard city={this.props.city} />
+                </div>
+                <div className="dropdownContainer">
                     {this.gettingItinerariesList()} 
                 </div>
         </div>
@@ -83,6 +70,7 @@ const mapStatetoProps = (state) => {
     return {
         itineraries: state.itineraries.itineraries,
         cities: state.cities.cities,
+        city: state.cities.city
     }
 };
 

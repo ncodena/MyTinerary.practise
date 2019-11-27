@@ -26,6 +26,13 @@ const failureGettingCities = error => {
     }   
 }
 
+export const selectedCity = (city) => {
+    return {
+        type: "SELECTED_CITY",
+        city
+    }
+}
+
 
 // export const fetchCities = () => {
 //     return function(dispatch) {

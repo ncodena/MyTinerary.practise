@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 class CityCard extends Component{
     render (){
+        const {city} = this.props
         return(
             <div>
-                <img className="cityImage" src={this.props.img} alt=""/>
-                <p className="nameContainer">{this.props.name} - {this.props.country}</p>
+                <img className="cityImage" src={city.img} alt=""/>
+                <p className="nameContainer">{city.name} - {city.country}</p>
             </div>
             
             
