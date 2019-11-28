@@ -13,6 +13,7 @@
 .accordion{
     margin-top: 15%;
     background-color: white;
+    padding-bottom: 6%;
     
 }
 .accordion-heading{
@@ -53,4 +54,25 @@ h2{
     color: white;
     display: flex;
     justify-content: center;
+}
+.accordion-body{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 6%;
+}
+.activityImage{
+    width: 87%;
+    height: 10vh;
+}
+
+.activityContainer{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.activityName{
+    display: flex;
+    justify-content: center;
+    width: 87%;
 }

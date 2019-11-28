@@ -22,8 +22,11 @@ class CollapsibleCity extends Component{
                         {itinerary.activities.map(activity => {
                             return(
                                 <Fragment>
-                                    <img className="activityImage" src={activity.img} alt=""/> 
-                                    <div>{activity.title}</div> 
+                                    <div className="activityContainer">
+                                        <img className="activityImage" src={activity.img} alt=""/> 
+                                        <div className="activityName">{activity.title}</div>
+                                    </div>
+                                     
                                 </Fragment>
                             )
          
