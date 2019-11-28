@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import '../assets/styles/Itineraries.css';
 import { connect } from 'react-redux';
 import CityCard from '../components/cityCard.js';
-
-
+import CollapsibleCity from '../components/collapsibleCity.js';
 
 class Itineraries extends Component{
 
@@ -14,44 +13,31 @@ class Itineraries extends Component{
         }
     }
     componentDidMount(){
-        console.log(this.props.cities)
+        console.log("from componentDidMount: ", this.props.itineraries)
+
+
+
         // this.props.fetchCities()
         // this.props.fetchItineraries()
-            // .then(()=> console.log(this.props.cities))
+        //     .then(()=> console.log(this.props.cities))
     
     } 
 
     gettingItinerariesList() {
         
         let itinerariesList = this.props.itineraries.map(itinerary=> {
-        return <div className="accordion" id="accordion2" key={itinerary._id}>
-                <div className="accordion-group">
-                    <div className="accordion-heading">
-                        <div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">
-                            <h2>{itinerary.title}</h2>
-                            <p className="infoContainer">{itinerary.rating} {itinerary.duration} {itinerary.price}</p>
-                            <div className="imageContainer">
-                                <img className="itineraryImage" src={itinerary.img} alt=""/> 
-                            </div>
-                             
-                        </div>
-                    </div>
-                    <div id="collapseTwo" class="accordion-body collapse">
-                        <p>djdjdjdjdjdjjjjjjjjjjjjjjjjj</p>
-                        
-                    </div>
-                    <div className="buttonContainer">
-                        <button class="SeeMore2" data-toggle="collapse" href="#collapseTwo">See More</button>
-                    </div>
-                    
-                </div>   
-            </div>  
+        return (
+            <CollapsibleCity itinerary={itinerary} key={itinerary._id}/>
+        )
         })
         return itinerariesList
     }
 
     render () {
-        console.log(this.props.itineraries);
+        // console.log("from render(): ", this.props.itineraries);
+        // const activitiesArr = this.props.itineraries.map(el => el.activities)
+        // console.log("activitiesArr: ", activitiesArr)
+        // if ( this.props.itineraries[0].activities) console.log(this.props.itineraries[0].activities)
         
         return(
             <div className= "body">
@@ -74,9 +60,9 @@ const mapStatetoProps = (state) => {
     }
 };
 
-// const mapDispatchToProps =(dispatch) => {
+// const mapDispatchToProps = (dispatch) => {
 //     return {
-//         // fetchCities: () => dispatch(cityActions.fetchCities()),
+//         fetchCities: () => dispatch(cityActions.fetchCities()),
 //         fetchItineraries: (cityId) => dispatch(itineraryAction.fetchItineraries(cityId))
 //     }
 // }

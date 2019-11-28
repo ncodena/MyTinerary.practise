@@ -18,10 +18,13 @@ router.get('/:cityId',
 	(req, res) => {
   		let cityRequested = req.params.cityId;
   		itinerarySchema.find({ cityId: cityRequested })
-			.then(city => {
-				res.send(city)
+			.then(itineraries => {
+				res.send(itineraries)
 			})
 			.catch(err => console.log(err));
 });
+
+
+
 
 module.exports = router;

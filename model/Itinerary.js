@@ -28,6 +28,10 @@ const itinerarySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    activities:{
+        type: Array,
+        required:true
+    }
 
 });
 

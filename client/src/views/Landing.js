@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from '../assets/images/MYtineraryLogo.png';
 import arrow from '../assets/images/circled-right-2.png';
-import home from '../assets/images/homeIcon.png';
 import { Link } from 'react-router-dom'
 import '../assets/styles/Landing.css';
 
@@ -24,8 +23,7 @@ return (
       </a>
       <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
         Create Account
-      </a>
-      <img src={home} className="homeIcon" alt="home-icon"></img>    
+      </a> 
     </div>
   </div>
 
