@@ -15,10 +15,11 @@ class CollapsibleCity extends Component{
                 itinerary.activities.map(activity => {
                     return(
                         <Fragment>
-                            <div className="activityContainer">
-                                <img className="activityImage" src={activity.img} alt=""/> 
-                                <div className="activityName">{activity.title}</div>
-                            </div>   
+                                <div className="activityContainer">
+                                    <img className="activityImage" src={activity.img} alt=""/> 
+                                    <div className="activityName">{activity.title}</div>
+                                </div> 
+                              
                         </Fragment>
                     )
                 })
@@ -43,10 +44,10 @@ class CollapsibleCity extends Component{
                              
                         </div>
                     </div>
-        
+                    <div className="accordionBody">
                         {this.getRenderedActivities()}
+                    </div>
                         
-    
                     <div className="buttonContainer">
                         <button onClick={this.toggle}>{this.state.isOpen ? 'Read Less' : 'Read More'}</button>
                     </div>

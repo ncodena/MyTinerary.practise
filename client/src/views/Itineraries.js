@@ -35,7 +35,7 @@ class Itineraries extends Component{
 
     render () {
         // console.log("from render(): ", this.props.itineraries);
-        // const activitiesArr = this.props.itineraries.map(el => el.activities)
+        // const activitiesArr = this.props.itineraries.mapn(el => el.activities)
         // console.log("activitiesArr: ", activitiesArr)
         // if ( this.props.itineraries[0].activities) console.log(this.props.itineraries[0].activities)
         
@@ -60,11 +60,5 @@ const mapStatetoProps = (state) => {
     }
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         fetchCities: () => dispatch(cityActions.fetchCities()),
-//         fetchItineraries: (cityId) => dispatch(itineraryAction.fetchItineraries(cityId))
-//     }
-// }
 
 export default connect(mapStatetoProps) (Itineraries);
