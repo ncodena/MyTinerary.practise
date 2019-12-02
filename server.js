@@ -23,6 +23,7 @@ app.listen(PORT, () => {
 
 app.use('/cities', require('./routes/cities'))
 app.use('/itineraries', require('./routes/itineraries'))
+app.use('/users', require('./routes/users'))
 
 mongoose.connect(db, { userNewUrlParser: true, dbName: "mernproject" })
     .then(() => console.log('Connection to Mongo DB established'))

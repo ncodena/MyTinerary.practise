@@ -30,7 +30,7 @@ const router = (
       <Route exact path="/" component={Landing} />
       <Route exact path="/cities" component={Cities} />
       <Route path="/itineraries" component={Itineraries} />
-      <Route path="/form" component={Form}/>
+      <Route path="/users" component={Form}/>
       <div className="footer">
         <img src={home} className="homeIcon" alt="home-icon"></img>   
       </div>
