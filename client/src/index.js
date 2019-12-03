@@ -5,7 +5,7 @@ import Landing from "./views/Landing"
 import Cities from './views/Cities';
 import Itineraries from './views/Itineraries'
 import Form from './views/Form';
-import home from './assets/images/homeIcon.png'
+// import home from './assets/images/homeIcon.png'
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
@@ -32,7 +32,7 @@ const router = (
       <Route path="/itineraries" component={Itineraries} />
       <Route path="/users" component={Form}/>
       <div className="footer">
-        <img src={home} className="homeIcon" alt="home-icon"></img>   
+        {/* <img src={home} className="homeIcon" alt="home-icon"></img>    */}
       </div>
     </div>
 

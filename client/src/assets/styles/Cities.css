@@ -12,7 +12,7 @@ input{
     z-index: 7;
 }
 
-form{
+.citiesForm{
     justify-content: center;
     display: flex;
     overflow: scroll;
