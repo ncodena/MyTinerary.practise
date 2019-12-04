@@ -67,6 +67,17 @@ return (
             <label htmlFor="lastName">Last Name:</label>
             <input type="lastName" id="lastName" placeholder="Enter your last name" name="lastName" value={this.state.lastName} onChange={this.handleChange}></input>
         </div>
+        <div>
+            <select>
+                <option value="England">England</option>
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Holland">Holland</option>
+                <option value="Ireland">Ireland</option>
+                <option value="Spain">Spain</option>
+                <option value="United States">United States</option>
+            </select>
+        </div>
         <div className="inputField">
             <label className="FormField__CheckboxLabel">
                 <input type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree to MYtinerary's 
