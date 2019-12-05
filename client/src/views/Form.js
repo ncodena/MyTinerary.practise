@@ -12,7 +12,8 @@ class Form extends React.Component{
             email: '',
             firstName: '',
             lastName: '',
-            hasAgreed: false
+            hasAgreed: false,
+            value: 'select country'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -39,8 +40,8 @@ class Form extends React.Component{
 
 render() {
 return (
-<div className="formPage">
-    <form onSubmit={this.handleSubmit} >
+<div className="body">
+    <form className="formPage" onSubmit={this.handleSubmit} >
         <h5>Create Account</h5>
 
         <div className="inputField">
@@ -67,8 +68,9 @@ return (
             <label htmlFor="lastName">Last Name:</label>
             <input type="lastName" id="lastName" placeholder="Enter your last name" name="lastName" value={this.state.lastName} onChange={this.handleChange}></input>
         </div>
-        <div>
-            <select>
+        <div className="inputField">
+            <select name="value" value={this.state.value} onChange={this.handleChange}>
+                <option value="select country">Select your country</option>
                 <option value="England">England</option>
                 <option value="France">France</option>
                 <option value="Germany">Germany</option>

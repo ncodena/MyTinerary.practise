@@ -1,12 +1,13 @@
 
 .formPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow: scroll;
+    height: 83vh;
+}
+.body{
     position: absolute;
     z-index: 60;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 20%;
-    overflow: scroll;
-    height: 83vh;
 }
