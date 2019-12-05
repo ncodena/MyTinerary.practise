@@ -17,10 +17,10 @@ router.get('/all',
             .catch(err => console.log(err));
 });
 
-router.get('/:name',
+router.get('/:firstName',
 	(req, res) => {
-  		let nameRequested = req.params.name;
-  		userSchema.find({ name: nameRequested })
+  		let nameRequested = req.params.firstName;
+  		userSchema.find({ firstName: nameRequested })
 			.then(users => {
 				res.send(users)
 			})
