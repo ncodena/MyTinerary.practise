@@ -1,8 +1,9 @@
 import React from 'react';
 // import { Link } from 'react-router-dom'
 import '../assets/styles/Form.css'
+import { Button, Form, Label, FormGroup, Input} from 'reactstrap';
 
-class Form extends React.Component{
+class SignUp extends React.Component{
     constructor() {
         super();
 
@@ -37,38 +38,46 @@ class Form extends React.Component{
         console.log(this.state);
     }
     
+    // async getUsers(username, password){
+    //     const user = await axios.post('http://localhost:5000/users/', {
+    //       username,
+    //       password
+    //     });
+        
+    //    }
 
 render() {
 return (
 <div className="body">
-    <form className="formPage" onSubmit={this.handleSubmit} >
+    <Form className="formPage" onSubmit={this.handleSubmit} >
         <h5>Create Account</h5>
 
-        <div className="inputField">
-            <label htmlFor="userName">Username:</label>
+        <label className="form-group">
+            <span htmlFor="userName">Username:</span>
             <input type="text" id="userName" placeholder="Enter your new user name" name="userName" value={this.state.userName} onChange={this.handleChange}></input>
-        </div>
+        </label>
 
-        <div className="inputField">
-            <label htmlFor="password">password:</label>
+        <FormGroup>
+            <Label htmlFor="password">password:</Label>
             <input type="text" id="password" placeholder="Enter your new password" name="password" value={this.state.password} onChange={this.handleChange}></input>
-        </div>
+        </FormGroup>
 
-        <div className="inputField">
-            <label htmlFor="email">E-mail:</label>
+        <FormGroup>
+            <Label htmlFor="email">E-mail:</Label>
             <input type="email" id="email" placeholder="Enter your e-mail adress" name="email" value={this.state.email} onChange={this.handleChange}></input>
-        </div>
+        </FormGroup>
 
-        <div className="inputField">
-            <label htmlFor="firstName">First Name:</label>
+        <FormGroup>
+            <Label htmlFor="firstName">First Name:</Label>
             <input type="firstName" id="firstName" placeholder="Enter your first name" name="firstName" value={this.state.firstName} onChange={this.handleChange}></input>
-        </div>
+        </FormGroup>
 
-        <div className="inputField">
-            <label htmlFor="lastName">Last Name:</label>
+        <FormGroup>
+            <Label htmlFor="lastName">Last Name:</Label>
             <input type="lastName" id="lastName" placeholder="Enter your last name" name="lastName" value={this.state.lastName} onChange={this.handleChange}></input>
-        </div>
-        <div className="inputField">
+        </FormGroup>
+        <FormGroup>
+            <Label for="exampleSelect">Select</Label>
             <select name="value" value={this.state.value} onChange={this.handleChange}>
                 <option value="select country">Select your country</option>
                 <option value="England">England</option>
@@ -79,18 +88,18 @@ return (
                 <option value="Spain">Spain</option>
                 <option value="United States">United States</option>
             </select>
-        </div>
-        <div className="inputField">
-            <label className="FormField__CheckboxLabel">
-                <input type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree to MYtinerary's 
+        </FormGroup>
+        <FormGroup>
+            <Label className="FormField__CheckboxLabel">
+                <Input type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree to MYtinerary's 
                 {/* <a href="" className="FormField__TermsLink">Terms and Conditions.</a> */}
-            </label>
-        </div>
+            </Label>
+        </FormGroup>
 
         <div className="buttonContainer">
-            <button>OK</button>
+            <Button>OK</Button>
         </div>
-    </form>
+    </Form>
   
 
 </div>
@@ -98,4 +107,4 @@ return (
 }
 }
 
-export default Form;
+export default SignUp;
