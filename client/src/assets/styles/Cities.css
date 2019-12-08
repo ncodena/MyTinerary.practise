@@ -4,7 +4,7 @@
     width: 100%;
 }
 
-input{
+.citiesFilter{
     position: fixed;
     width: 60%;
     text-align: center;

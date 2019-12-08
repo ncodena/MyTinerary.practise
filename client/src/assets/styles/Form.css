@@ -18,12 +18,12 @@ h5{
     display: flex;
     justify-content: center;
 }
-/* .form-group{
+.form-group{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-} */
+    justify-content: space-around;
+    align-items: center;
+}
 
 input {
     width: 57%;
