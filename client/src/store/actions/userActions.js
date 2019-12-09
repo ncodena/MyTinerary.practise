@@ -1,26 +1,21 @@
 const signUp = (newUser) => {
 
-    const originalPassword = newUser.password
+    console.log('estamos en el signup usersactions aun en el front end y el newuser es:', newUser)
 
+    const originalPassword = newUser.password
+    console.log(JSON.stringify(newUser))
     return async (dispatch) => {
-        return await fetch('/signUp', {
+        return await fetch('/users/register', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+            //   "Accept": "application/json"
             },
             body: JSON.stringify(newUser),
             mode: 'no-cors'      
-    })
-    .then(res => {
-        return res.json()
-
-    })
+    }).then(res => res.json())
     .then(data => {
-        if (data.msg) console.log (data.msg)
-        else {
-            const user = {email: data.email, password: originalPassword}
-            // dispatch(login(user))
-        }
+        console.log(data)
     })
     .catch(err => console.error(err))
 

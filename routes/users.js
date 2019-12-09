@@ -1,5 +1,6 @@
 const express = require('express')
 
+
 const router = express.Router()
 // const bcrypt = require('bcryptjs');
 // const saltRounds = 10;
@@ -27,19 +28,30 @@ router.get('/:firstName',
 			.catch(err => console.log(err));
 });
 
-router.post('/', (req, res) => {
-    // console.log(req.body)
+router.post('/register', (req, res) => {
+
+    const {
+        firstName,
+        lastName, 
+        userName, 
+        password,
+        email,
+        country,
+        hasAgreed
+    } = JSON.parse(Object.keys(req.body)[0]);
+    
+
     const newUser = new userSchema({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        userName: req.body.userName,
-        birth: req.body.birth,
-        country: req.body.country,
-        img: req.body.img,
-        email: req.body.email,
-        password: req.body.password
-        
+        firstName,
+        lastName, 
+        userName, 
+        password,
+        email,
+        country,
+        hasAgreed
     });
+
+
     newUser.save ((err, userName) => {
         if (userName) {
             res.send(userName);
@@ -49,28 +61,20 @@ router.post('/', (req, res) => {
         }
     })
 
+    if (!email) {
+        return res.send({
+          success: false,
+          message: 'Error: Email cannot be blank.'
+        });
+    }
 
+    if (!password) {
+        return res.send({
+          success: false,
+          message: 'Error: Password cannot be blank.'
+        }); 
+    }
 
-    // console.log(newUser)
-    // newUser.save()
-    //     .then(user => {
-    //         console.log(user)
-    //         res.send(user)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         res.status(500).send("Server error")}) 
-
-    //     if (userName) {
-    //         res.send(userName);
-    //     }
-    //     else if (email) {
-    //         res.send(email);
-    //     }
-    //     else {
-    //         res.status(500).send(err)
-    //     }
-    // })
 });
 
 

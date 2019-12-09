@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     birth:{
         type: String,
-        required:true,
+
     },
     country:{
         type: String,
@@ -33,7 +33,6 @@ const userSchema = new mongoose.Schema({
     },
     img:{
         type: String,
-        required: true
     }
 });
 
