@@ -6,6 +6,7 @@ const bodyParser = require ("body-parser");
 const cors = require("cors");
 
 const db = require('./keys').mongoURI;
+
 const mongoose = require("mongoose")
 
 app.use(bodyParser.json());
@@ -24,7 +25,11 @@ app.listen(PORT, () => {
 app.use('/cities', require('./routes/cities'))
 app.use('/itineraries', require('./routes/itineraries'))
 app.use('/users', require('./routes/users'))
+app.use('/auth', require('./routes/auth'))
 
-mongoose.connect(db, { userNewUrlParser: true, dbName: "mernproject" })
+mongoose.connect(db, { 
+    userNewUrlParser: true,
+    useCreateIndex: true, 
+    dbName: "mernproject" })
     .then(() => console.log('Connection to Mongo DB established'))
     .catch(err => console.log(err));

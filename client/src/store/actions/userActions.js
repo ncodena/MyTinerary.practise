@@ -2,7 +2,6 @@ const signUp = (newUser) => {
 
     console.log('estamos en el signup usersactions aun en el front end y el newuser es:', newUser)
 
-    const originalPassword = newUser.password
     console.log(JSON.stringify(newUser))
     return async (dispatch) => {
         return await fetch('/users/register', {

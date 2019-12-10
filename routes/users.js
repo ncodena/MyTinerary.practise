@@ -1,12 +1,9 @@
 const express = require('express')
 
-
 const router = express.Router()
-// const bcrypt = require('bcryptjs');
-// const saltRounds = 10;
-// const myPlaintextPassword = 's0/\/\P4$$w0rD';
-// const someOtherPlaintextPassword = 'not_bacon';
+
 const userSchema = require('../model/userModel')
+
 
 router.get('/all',
     (req, res) => {
@@ -28,8 +25,12 @@ router.get('/:firstName',
 			.catch(err => console.log(err));
 });
 
+// POST new users
+
 router.post('/register', (req, res) => {
 
+
+    console.log(req.body)
     const {
         firstName,
         lastName, 
@@ -38,7 +39,16 @@ router.post('/register', (req, res) => {
         email,
         country,
         hasAgreed
-    } = JSON.parse(Object.keys(req.body)[0]);
+    } = req.body;
+    // JSON.parse(Object.keys(req.body));
+
+    console.log(firstName,
+        lastName, 
+        userName, 
+        password,
+        email,
+        country,
+        hasAgreed)
     
 
     const newUser = new userSchema({
@@ -76,6 +86,9 @@ router.post('/register', (req, res) => {
     }
 
 });
+
+// POST Route for LOGIN
+
 
 
 module.exports = router;
