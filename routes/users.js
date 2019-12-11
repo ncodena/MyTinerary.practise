@@ -29,7 +29,6 @@ router.get('/:firstName',
 
 router.post('/register', (req, res) => {
 
-
     console.log(req.body)
     const {
         firstName,
@@ -42,49 +41,40 @@ router.post('/register', (req, res) => {
     } = req.body;
     // JSON.parse(Object.keys(req.body));
 
-    console.log(firstName,
-        lastName, 
-        userName, 
-        password,
-        email,
-        country,
-        hasAgreed)
-    
+    // console.log(firstName,
+    //     lastName, 
+    //     userName, 
+    //     password,
+    //     email,
+    //     country,
+    //     hasAgreed)
+    // Simple validation
+    if(!userName || !email || !password) {
+        return res.status(400).json ({msg: 'Please enter all fields'});
 
-    const newUser = new userSchema({
-        firstName,
-        lastName, 
-        userName, 
-        password,
-        email,
-        country,
-        hasAgreed
-    });
+    }
+    const newUser = userSchema;
 
+    newUser.findOne({email} || {userName})
+    .then(user =>{
 
-    newUser.save ((err, userName) => {
-        if (userName) {
-            res.send(userName);
-        }
-        else {
-            res.status(500).send(err)
-        }
-    })
+        if(user) return res.status(400).json({msg: "User already exists"});
 
-    if (!email) {
-        return res.send({
-          success: false,
-          message: 'Error: Email cannot be blank.'
+        const newUser = new userSchema({
+            firstName,
+            lastName, 
+            userName, 
+            password,
+            email,
+            country,
+            hasAgreed
         });
-    }
 
-    if (!password) {
-        return res.send({
-          success: false,
-          message: 'Error: Password cannot be blank.'
-        }); 
-    }
-
+        newUser.save()
+            .then (user => {
+                res.send(user)
+            })
+    })
 });
 
 // POST Route for LOGIN
