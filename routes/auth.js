@@ -2,89 +2,82 @@ const express = require('express')
 
 const router = express.Router()
 
-const userSchema = require('../model/userModel')
-
 const jwt = require("jsonwebtoken");
 
-const key = require ('../keys').jwtSecret;
+const key = require ('../keys');
+
+const bcrypt = require('bcryptjs')
+
+const userSchema = require('../model/userModel')
 
 
 // POST Route for LOGIN
 
-router.post('/register', (req, res) => {
+router.post('/', (req, res) => {
 
-    const {
-        firstName,
-        lastName, 
-        userName, 
-        password,
-        email,
-        country,
-        hasAgreed
-    } = JSON.parse(Object.keys(req.body)[0]);
+    const { password, email } = req.body;
+
+    console.log(req.body)
+    // = JSON.parse(Object.keys(req.body)[0]);
 
     // Simple validation
-    if(!userName || !email || !password) {
+    if(!email || !password) {
         return res.status(400).json ({msg: 'Please enter all fields'});
 
     }
 
     //Check for existing user
-
-    newUser.findOne({email})
+    userSchema.findOne({email: req.body.email})
+        .catch(err => console.log(err)) 
         .then(user =>{
+            if(!user) return res.status(400).json({msg: "User does not exist"});
 
-            if(user) return res.status(400).json({msg: "User already exists"});
+            if(user){
 
-            const newUser = new userSchema({
-                firstName,
-                lastName, 
-                userName, 
-                password,
-                email,
-                country,
-                hasAgreed
-            });
+            //Validate password
+            bcrypt.compare(req.body.password, user.password), function (isMatch){
+                if(!isMatch) return res.status(400).json({msg: 'Invalid credentials'});
+                if (isMatch) {
+                    const payload = {
+                        id: user.id,
+                        userName: user.userName,
+                        // avatarPicture: user.avatarPicture
+            };
+            const options = { expiresIn: 3600 };
 
-            newUser.save()
-                .then (user => {
-                    jwt.sign(
-                        {id: user.id},
-                        key.get('jwtSecret'),
-                        { expiresIn: 3600 },
-                        (err, token) => {
-                            if(err) throw err;
-                            res.json({
-                                token,
-                                user: {
-                                    id: user.id,
-                                    userName: user.userName,
-                                    email: user.email,
-                                }
-                            })
-                        }
+            jwt.sign(
+                payload,
+                key.jwtSecret,
+                options,
+                (err, token) => {
+                    if(err){
+                        res.json({
+                            success: false,
+                            token: "There was an error"
+                        });
 
-                    )
+                    }else {
+                        res.json({
+                            success: true,
+                            token: token,
+                            user: user
+                        });
+
+                    }});
 
 
-                    
-                })
+
+
+                }
+            }}
+              
+
+        });
+
         
 
-        })
-
-    
-
-    
-
-    
-
-    
-    
 
 });
-
-
 
 
 
