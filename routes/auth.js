@@ -10,6 +10,8 @@ const bcrypt = require('bcryptjs')
 
 const userSchema = require('../model/userModel')
 
+const authToken = require('../middleware/authMiddleware')
+
 
 // POST Route for LOGIN
 
@@ -17,7 +19,6 @@ router.post('/', (req, res) => {
 
     const { password, email } = req.body;
 
-    console.log(req.body)
     // = JSON.parse(Object.keys(req.body)[0]);
 
     // Simple validation
@@ -28,36 +29,48 @@ router.post('/', (req, res) => {
 
     //Check for existing user
     userSchema.findOne({email: req.body.email})
-        .catch(err => console.log(err)) 
-        .then(user =>{
-            if(!user) return res.status(400).json({msg: "User does not exist"});
+        
+        .then((user) =>{
+           
+            if(!user) {
 
-            if(user){
+                res.status(400).json({msg: "User does not exist"});
+
+            } else {
 
             //Validate password
-            bcrypt.compare(req.body.password, user.password), function (isMatch){
+            console.log("right before bcrypt",user)
+            console.log(req.body.password, user.password);
+            
+            bcrypt.compare(req.body.password, user.password, function (err,isMatch){
+                console.log("right after bcrypt")
                 if(!isMatch) return res.status(400).json({msg: 'Invalid credentials'});
-                if (isMatch) {
+                else {
+                    console.log("after isMatch")
                     const payload = {
                         id: user.id,
                         userName: user.userName,
                         // avatarPicture: user.avatarPicture
-            };
+                        
+                    };
             const options = { expiresIn: 3600 };
+            console.log("after options")
 
             jwt.sign(
                 payload,
                 key.jwtSecret,
                 options,
                 (err, token) => {
+                    console.log(err)
                     if(err){
-                        res.json({
+                        return res.json({
                             success: false,
                             token: "There was an error"
                         });
 
                     }else {
-                        res.json({
+                        console.log("user", user, "token", token)
+                       return res.json({
                             success: true,
                             token: token,
                             user: user
@@ -65,20 +78,18 @@ router.post('/', (req, res) => {
 
                     }});
 
-
-
-
                 }
-            }}
-              
-
-        });
-
-        
-
-
+            })
+        }   
+    })
+    .catch(err => console.log(err)) 
 });
 
-
+router.get("/verify", (req,res) => {
+    const user = authToken(req,res);
+    res.send({
+        user
+    })
+})
 
 module.exports = router;
