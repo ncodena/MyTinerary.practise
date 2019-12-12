@@ -38,15 +38,13 @@ router.post('/', (req, res) => {
 
             } else {
 
-            //Validate password
-            console.log("right before bcrypt",user)
-            console.log(req.body.password, user.password);
+
             
             bcrypt.compare(req.body.password, user.password, function (err,isMatch){
-                console.log("right after bcrypt")
+               
                 if(!isMatch) return res.status(400).json({msg: 'Invalid credentials'});
                 else {
-                    console.log("after isMatch")
+                
                     const payload = {
                         id: user.id,
                         userName: user.userName,
@@ -54,14 +52,14 @@ router.post('/', (req, res) => {
                         
                     };
             const options = { expiresIn: 3600 };
-            console.log("after options")
+          
 
             jwt.sign(
                 payload,
                 key.jwtSecret,
                 options,
                 (err, token) => {
-                    console.log(err)
+      
                     if(err){
                         return res.json({
                             success: false,
@@ -69,7 +67,7 @@ router.post('/', (req, res) => {
                         });
 
                     }else {
-                        console.log("user", user, "token", token)
+                      
                        return res.json({
                             success: true,
                             token: token,
@@ -85,11 +83,18 @@ router.post('/', (req, res) => {
     .catch(err => console.log(err)) 
 });
 
-router.get("/verify", (req,res) => {
-    const user = authToken(req,res);
-    res.send({
-        user
-    })
-})
+// @route GET auth/user
+// @desc Get user data
+// @access Private
+
+router.get('/user', authToken, (req, res) => {
+    console.log("inside the get route")
+    userSchema.findById(req.user.id)
+    // console.log(req.user.id)
+        // .select('-password')
+        // console.log(password)
+        .then(user =>res.json(user));
+});
+
 
 module.exports = router;
