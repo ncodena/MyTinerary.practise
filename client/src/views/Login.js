@@ -1,7 +1,8 @@
 import React from 'react';
 // import { Link } from 'react-router-dom'
-// import '../assets/styles/Form.css'
-import { Button, Form, Label, FormGroup, Input} from 'reactstrap';
+import '../assets/styles/Login.css'
+import { Button, Form, Label, FormGroup} from 'reactstrap';
+
 // import {signUp} from "../store/actions/userActions"
 // import { connect } from 'react-redux';
 
@@ -11,15 +12,35 @@ class LogIn extends React.Component{
 
         this.state = {
             
-            // signUpUserName:'',
-            // signUpPassword: '',
-            // signUpEmail: '',
-            // signUpFirstName: '',
-            // signUpLastName: '',
-            // signUpHasAgreed: false,
+            email: '',
+            password: ''
+           
             
         };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleChange(e) {
+        let target = e.target;
+        let value =target.type === 'checkbox' ? target.checked : target.value;
+        let name = target.name;
+
+        this.setState({
+          [name]: value
+        });
+
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+
+        console.log('The form was submitted with the following data:')
+        console.log(this.state)
+
+    }
+
 
     // handleChange(e) {
     //     let target = e.target;
@@ -30,42 +51,42 @@ class LogIn extends React.Component{
     //     });
     // }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        // console.log(e.target.firstName.value)
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     // console.log(e.target.firstName.value)
 
-        let currentUser = {
+    //     let currentUser = {
             
-            password: e.target.password.value,
-            email: e.target.email.value,
+    //         password: e.target.password.value,
+    //         email: e.target.email.value,
     
-        }
+    //     }
 
-        console.log(newUser)
+    //     console.log(newUser)
 
-        // this.props.signUp(currentUser)
+    //     // this.props.signUp(currentUser)
 
-    }
+    // }
     
 
 render() {
 return (
 <div className="body">
-    <Form className="formPage" onSubmit={(e) => this.handleSubmit(e)}>
+    <Form className="loginPage" onSubmit={(e) => this.handleSubmit(e)}>
         <h5>Log In</h5>
 
         <FormGroup>
             <Label htmlFor="email">E-mail:</Label>
-            <input type="text" id="email" placeholder="Enter your e-mail adress" name="email"></input>
+            <input type="text" id="email" placeholder="Enter your e-mail adress" name="email" value= {this.state.email} onChange= {this.handleChange}></input>
         </FormGroup>
 
         <FormGroup>
             <Label htmlFor="password">Password:</Label>
-            <input type="text" id="password" placeholder="Enter your new password" name="password"></input>
+            <input type="text" id="password" placeholder="Enter your new password" name="password" value= {this.state.password} onChange= {this.handleChange}></input>
         </FormGroup>
 
         <div className="buttonContainer">
-            <Button>Submit</Button>
+            <Button>Sign In</Button>
         </div>
     </Form>
   

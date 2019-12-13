@@ -1,0 +1,45 @@
+.loginPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow: scroll;
+    height: 83vh;
+    margin-top: 15%;
+    background-color: whitesmoke;
+
+}
+.body{
+    position: absolute;
+    z-index: 60;
+    width: 100%;
+}
+h5{
+    display: flex;
+    justify-content: center;
+}
+.form-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input {
+    width: 57%;
+    padding: 3px 23px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+input:focus {
+    border: 3px solid #555;
+}
+Label{
+    display: flex;
+    margin-bottom: .5rem;
+    width: 29%;
+    margin-left: 10%;
+}

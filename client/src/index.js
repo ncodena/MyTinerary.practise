@@ -5,6 +5,7 @@ import Landing from "./views/Landing"
 import Cities from './views/Cities';
 import Itineraries from './views/Itineraries'
 import SignUp from './views/Form';
+import LogIn from './views/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import home from './assets/images/homeIcon.png'
 
@@ -32,6 +33,7 @@ const router = (
       <Route exact path="/cities" component={Cities} />
       <Route path="/itineraries" component={Itineraries} />
       <Route path="/users" component={SignUp}/>
+      <Route path="/login" component={LogIn}/>
       <div className="footer">
         {/* <img src={home} className="homeIcon" alt="home-icon"></img>    */}
       </div>
