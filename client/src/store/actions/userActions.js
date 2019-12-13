@@ -1,4 +1,9 @@
-const signUp = (newUser) => {
+export const USER_LOADING = "USER_LOADING";
+export const USER_LOADED = "USER_LOADED";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+
+
+export const signUp = (newUser) => {
 
     console.log('estamos en el signup usersactions aun en el front end y el newuser es:', newUser)
 
