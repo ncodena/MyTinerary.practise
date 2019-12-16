@@ -3,8 +3,8 @@ import React from 'react';
 import '../assets/styles/Login.css'
 import { Button, Form, Label, FormGroup} from 'reactstrap';
 
-// import {signUp} from "../store/actions/userActions"
-// import { connect } from 'react-redux';
+import {login} from "../store/actions/userActions"
+import { connect } from 'react-redux';
 
 class LogIn extends React.Component{
     constructor() {
@@ -37,7 +37,16 @@ class LogIn extends React.Component{
         e.preventDefault();
 
         console.log('The form was submitted with the following data:')
-        console.log(this.state)
+        // console.log(this.state)
+
+        let user = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        console.log(user)
+
+        this.props.login(user)
 
     }
 
@@ -96,6 +105,10 @@ return (
 }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (user) => dispatch(login(user))
+    }
+}
 
-
-export default (LogIn);
+export default connect (null, mapDispatchToProps) (LogIn);

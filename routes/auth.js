@@ -15,7 +15,7 @@ const authToken = require('../middleware/authMiddleware')
 
 // POST Route for LOGIN
 
-router.post('/', (req, res) => {
+router.post('/sign-in', (req, res) => {
 
     const { password, email } = req.body;
 
