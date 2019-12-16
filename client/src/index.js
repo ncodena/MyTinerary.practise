@@ -6,6 +6,7 @@ import Cities from './views/Cities';
 import Itineraries from './views/Itineraries'
 import SignUp from './views/Form';
 import LogIn from './views/Login';
+import logger from 'redux-logger';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import home from './assets/images/homeIcon.png'
 
@@ -21,7 +22,7 @@ import rootReducer from './store/reducers/rootReducer';
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, logger)
 );
 
 const router = (

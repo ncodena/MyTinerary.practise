@@ -17,9 +17,10 @@ const authToken = require('../middleware/authMiddleware')
 
 router.post('/sign-in', (req, res) => {
 
-    const { password, email } = req.body;
+    const { password, email } = req.body
 
-    // = JSON.parse(Object.keys(req.body)[0]);
+    req.body = JSON.parse(Object.keys(req.body)[0]);
+
 
     // Simple validation
     if(!email || !password) {

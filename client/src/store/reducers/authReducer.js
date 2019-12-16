@@ -1,10 +1,11 @@
 import {USER_LOADING} from '../actions/userActions';
 import {USER_LOADED} from '../actions/userActions';
-import {LOGIN_SUCCESS} from '../actions/userActions';
+import {LOGIN_FAILURE} from '../actions/userActions';
 
 const initialState = {
     loading: false,
-    currentUser: {}
+    currentUser: {},
+    error: ''
 };
 
 export default function (state = initialState, action) {
@@ -17,16 +18,14 @@ export default function (state = initialState, action) {
         case USER_LOADED:
             return {
                ...state,
-               isAuthenticated: true,
                loading: false,
-               currentUser: action.payload
+               currentUser: action.currentUser
             };
-        case LOGIN_SUCCESS:
+        case LOGIN_FAILURE:
             return {
                 ...state,
-                ...action.payload,
-                isAuthenticated: true,
                 loading: false,
+                error: action.error
             };
             default:
                 return state;

@@ -37,7 +37,6 @@ class LogIn extends React.Component{
         e.preventDefault();
 
         console.log('The form was submitted with the following data:')
-        // console.log(this.state)
 
         let user = {
             email: this.state.email,
@@ -49,33 +48,6 @@ class LogIn extends React.Component{
         this.props.login(user)
 
     }
-
-
-    // handleChange(e) {
-    //     let target = e.target;
-    //     let name = target.name;
-
-    //     this.setState({
-    //       [name]: value
-    //     });
-    // }
-
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     // console.log(e.target.firstName.value)
-
-    //     let currentUser = {
-            
-    //         password: e.target.password.value,
-    //         email: e.target.email.value,
-    
-    //     }
-
-    //     console.log(newUser)
-
-    //     // this.props.signUp(currentUser)
-
-    // }
     
 
 render() {

@@ -261,28 +261,9 @@ class SignUp extends React.Component{
                 "Zimbabwe",
                 "Åland Islands"
             ]
-
-
-            // signUpUserName:'',
-            // signUpPassword: '',
-            // signUpEmail: '',
-            // signUpFirstName: '',
-            // signUpLastName: '',
-            // signUpHasAgreed: false,
-            
-            // signUpValue: 'select country'
         };
     }
 
-    // handleChange(e) {
-    //     let target = e.target;
-    //     let value = target.type === 'checkbox' ? target.checked : target.value;
-    //     let name = target.name;
-
-    //     this.setState({
-    //       [name]: value
-    //     });
-    // }
 
     handleSubmit = (e) => {
         e.preventDefault();
