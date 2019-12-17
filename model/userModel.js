@@ -33,7 +33,11 @@ const userSchema = new mongoose.Schema({
     },
     img:{
         type: String,
-    }
+    },
+
+    favorites: [{ 
+        type : Array, 
+        ref: 'Track' }]
 });
 
 userSchema.pre('save', async function(next){
@@ -50,7 +54,6 @@ userSchema.pre('save', async function(next){
     }
 
 });
-
 
 
 module.exports = mongoose.model('user', userSchema)
