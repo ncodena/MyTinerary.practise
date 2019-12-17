@@ -32,7 +32,13 @@ const requestUser = () => {
     }   
 }
 
-
+// const receiveUser = currentUser => {
+//     return{
+//         type: USER_LOADED,
+//         currentUser
+        
+//     }   
+// }
 const failureGettingUser = error => {
     return{
         type: LOGIN_FAILURE,
@@ -46,7 +52,6 @@ export const login = (user) => {
     console.log("about to send the user to the backend with fetch", user)
     return async (dispatch) => {
         dispatch (requestUser())
-
         return await fetch('/auth/sign-in', {
             // user loading
             method: 'POST',
@@ -76,9 +81,3 @@ export const login = (user) => {
 
 }
 
-
-
-// module.exports = {
-//     signUp: signUp,
-//     login: login
-// }

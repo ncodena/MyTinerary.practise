@@ -39,7 +39,6 @@ router.post('/sign-in', (req, res) => {
 
             } else {
 
-
             
             bcrypt.compare(req.body.password, user.password, function (err,isMatch){
                
@@ -95,6 +94,17 @@ router.get('/user', authToken, (req, res) => {
         // .select('-password')
         // console.log(password)
         .then(user =>res.json(user));
+});
+
+// GET Route for FAVOURITES
+router.get('/favourites',
+    (req, res) => {
+        let favouritesArray = req.params.favourites;
+        userSchema.findOne({favourites: favouritesArray })
+            .then(favourite => {
+                res.send(favourite)
+            })
+            .catch(err => console.log(err));
 });
 
 

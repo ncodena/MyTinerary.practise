@@ -39,15 +39,11 @@ router.post('/register', (req, res) => {
         country,
         hasAgreed
     } = req.body;
-    // JSON.parse(Object.keys(req.body));
 
-    // console.log(firstName,
-    //     lastName, 
-    //     userName, 
-    //     password,
-    //     email,
-    //     country,
-    //     hasAgreed)
+
+    req.body = JSON.parse(Object.keys(req.body)[0]);
+
+   
     // Simple validation
     if(!userName || !email || !password) {
         return res.status(400).json ({msg: 'Please enter all fields'});
@@ -77,7 +73,6 @@ router.post('/register', (req, res) => {
     })
 });
 
-// POST Route for LOGIN
 
 
 
