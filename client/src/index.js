@@ -6,6 +6,7 @@ import Cities from './views/Cities';
 import Itineraries from './views/Itineraries'
 import SignUp from './views/Form';
 import LogIn from './views/Login';
+import dummyButton from './views/Testbutton';
 import logger from 'redux-logger';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import home from './assets/images/homeIcon.png'
@@ -35,6 +36,7 @@ const router = (
       <Route path="/itineraries" component={Itineraries} />
       <Route path="/users" component={SignUp}/>
       <Route path="/login" component={LogIn}/>
+      <Route path="/testpage" component={dummyButton}/>
       <div className="footer">
         {/* <img src={home} className="homeIcon" alt="home-icon"></img>    */}
       </div>
