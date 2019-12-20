@@ -12,23 +12,29 @@ class dummyButton extends React.Component{
 
         this.state = {
             
-            text: '',
+            testingTest: '',
+            favourites: []
            
             
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.addFavouritestoArray = this.addFavouritestoArray.bind(this);
     }
 
     handleChange(e) {
         let target = e.target;
-        let value =target.type === 'checkbox' ? target.checked : target.value;
+        let value =target.type === 'input' ? target.checked : target.value;
         let name = target.name;
 
         this.setState({
           [name]: value
         });
+
+        console.log(this.state)
+
+
 
     }
 
@@ -37,13 +43,40 @@ class dummyButton extends React.Component{
 
         console.log('The form was submitted with the following data:')
 
-        let text = {
-            tester: this.state.text,
+        // let text = {
+        //     tester: this.state.testingText,
+        // }
+
+        // console.log(text)
+
+        this.addFavouritestoArray(this.state.testingTest);
+
+        // this.props.testAction(text)
+
+    }
+
+    addFavouritestoArray(testingTest) {
+        let newArray = this.state.favourites.slice();
+
+        if(this.state.favourites.includes(testingTest) == false){
+             newArray.push(testingTest);
+
+        } 
+        else {
+
+            
+
+            for (let i = 0 ; i < newArray.length ; i++) {
+                if (newArray[i] == testingTest) {
+                    newArray.splice(i, 1)
+                } 
+            }
+
+
+            // newArray.splice(newArray.indexOf(testingTest))
         }
-
-        console.log(text)
-
-        this.props.testAction(text)
+        
+        this.setState({favourites: newArray},() => console.log(this.state))
 
     }
     
@@ -51,19 +84,23 @@ class dummyButton extends React.Component{
 render() {
 return (
 <div className="body">
-    <Form className="testingPage" onSubmit={(e) => this.handleSubmit(e)}>
-        <h5>Log In</h5>
+    <input 
+    type="text" 
+    placeholder="Enter your text" 
+    name="testingTest" 
+    value= {this.state.testingTest} onChange= {this.handleChange} />
 
-        <FormGroup>
-            <input type="text" id="text" placeholder="Enter your text" name="text" value= {this.state.testingText} onChange= {this.handleChange}></input>
-        </FormGroup>
+    <Button onClick={this.handleSubmit}>Submit</Button>
 
-
-        <div className="buttonContainer">
-            <Button>Submit</Button>
-        </div>
-    </Form>
-  
+    <ul>
+        {this.state.favourites.map((favourite,index) => {
+            return (
+                <li key={index}>
+                    {favourite}
+                </li>
+            )
+        }) }
+    </ul>
 
 </div>
 )
