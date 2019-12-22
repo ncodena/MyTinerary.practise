@@ -10,7 +10,11 @@ const bcrypt = require('bcryptjs')
 
 const userSchema = require('../model/userModel')
 
+const itinerarySchema = require('../model/Itinerary')
+
 const authToken = require('../middleware/authMiddleware')
+
+const ObjectId = require("objectid")
 
 
 // POST Route for LOGIN
@@ -107,22 +111,36 @@ router.get('/favourites',
             .catch(err => console.log(err));
 });
 
+
+
+
 // POST Route for FAVOURITES
 
-router.post('/', (req, res) => {
-    const newCity = new cityModel({
-        name: req.body.name,
-        country: req.body.country,
-        img: req.body.img
-    });
-    newCity.save ((err, city) => {
-        if (city) {
-            res.send(city);
-        }
-        else {
-            res.status(500).send(err)
-        }
-    })
+router.put("/favourites/userId", authToken, (req, res) => {
+    
+      // Return updated 
+      userSchema.findOneAndUpdate(
+        { _id: ObjectId(req.body.userId)},
+        {$push: {favourites: newFavourite}}
+            .then(newFavourite => res.send(newFavourite))
+            .catch(err => res.json(err))
+    );
+  });
+
+
+module.exports = router;
+
+
+router.put("/favourites/userId", authToken, (req, res) => {
+    
+    // Return updated 
+    userSchema.findOneAndUpdate(_id: ObjectId(req.body.userId);
+        
+      {$push: {favourites: newFavourite}}
+
+          .then(newFavourite => res.send(newFavourite))
+          .catch(err => res.json(err))
+  
 });
 
 
