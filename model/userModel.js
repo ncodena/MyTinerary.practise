@@ -36,8 +36,9 @@ const userSchema = new mongoose.Schema({
     },
 
     favourites: [{ 
-        // type : Schema.Types.ObjectId, 
+        type : Schema.Types.ObjectId, 
         // ref: 'Track' 
+
     }]
 });
 
