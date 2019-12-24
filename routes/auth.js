@@ -130,17 +130,18 @@ router.put("/favourites/userId", authToken, (req, res) => {
 
 module.exports = router;
 
-
 router.put("/favourites/userId", authToken, (req, res) => {
     
     // Return updated 
-    userSchema.findOneAndUpdate(_id: ObjectId(req.body.userId);
-        
+    userSchema.findOneAndUpdate(
+      { _id: ObjectId(req.body.userId)},
       {$push: {favourites: newFavourite}}
-
+      itinerarySchema.findById(
+          
+      )
           .then(newFavourite => res.send(newFavourite))
           .catch(err => res.json(err))
-  
+  );
 });
 
 
