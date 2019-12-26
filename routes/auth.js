@@ -121,8 +121,17 @@ router.put("/favourites/userId", authToken, (req, res) => {
       // Return updated 
       userSchema.findOneAndUpdate(
         { _id: ObjectId(req.body.userId)},
-        {$push: {favourites: newFavourite}}
-            .then(newFavourite => res.send(newFavourite))
+            .then((user) => {
+                {$push: {favourites: newFavourite}}
+                user.save()
+                .then((user)=> {
+                    itinerarySchema.find(_id: user.favourites)
+                    .then(favourites => res.send(favourites))
+
+                })
+            
+                
+            } 
             .catch(err => res.json(err))
     );
   });
@@ -130,19 +139,19 @@ router.put("/favourites/userId", authToken, (req, res) => {
 
 module.exports = router;
 
-router.put("/favourites/userId", authToken, (req, res) => {
+// router.put("/favourites/userId", authToken, (req, res) => {
     
-    // Return updated 
-    userSchema.findOneAndUpdate(
-      { _id: ObjectId(req.body.userId)},
-      {$push: {favourites: newFavourite}}
-      itinerarySchema.findById(
-          
-      )
-          .then(newFavourite => res.send(newFavourite))
-          .catch(err => res.json(err))
-  );
-});
+//     // Return updated 
+//     userSchema.findOneAndUpdate(
+//       { _id: ObjectId(req.body.userId)},
+//       {$push: {favourites: newFavourite}}
+//       itinerarySchema.findById(
+
+//       )
+//           .then(newFavourite => res.send(newFavourite))
+//           .catch(err => res.json(err))
+//   );
+// });
 
 
 module.exports = router;
