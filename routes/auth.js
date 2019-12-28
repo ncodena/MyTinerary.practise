@@ -125,10 +125,10 @@ router.put("/favourites/userId", authToken, (req, res) => {
                 {$push: {favourites: newFavourite}}
                 user.save()
                 .then((user)=> {
-                    itinerarySchema.find(_id: user.favourites)
-                    .then(favourites => res.send(favourites))
+                    itinerarySchema.find( _id: user.favourites)
+                        .then(favourites => res.send(favourites))
 
-                })
+                });
             .catch(err => res.json(err))
     );
   });
