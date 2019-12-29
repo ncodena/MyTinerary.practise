@@ -129,7 +129,7 @@ router.put("/favourites/userId", authToken, (req, res) => {
                         .then(favourites => res.send(favourites))
 
                 });
-            .catch(err => res.json(err))
+                .catch(err => res.json(err))
     );
   });
 
