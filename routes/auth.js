@@ -23,7 +23,7 @@ router.post('/sign-in', (req, res) => {
 
     const { password, email } = req.body
 
-    req.body = JSON.parse(Object.keys(req.body)[0]);
+    // req.body = JSON.parse(Object.keys(req.body)[0]);
 
 
     // Simple validation
@@ -116,22 +116,30 @@ router.get('/favourites',
 
 // POST Route for FAVOURITES
 
-router.put("/favourites/userId", authToken, (req, res) => {
+// router.put("/favourites/userId", authToken, (req, res) => {
     
-      // Return updated 
-      userSchema.findOneAndUpdate(
-        { _id: ObjectId(req.body.userId)},
-            .then((user) => {
-                {$push: {favourites: newFavourite}}
-                user.save()
-                .then((user)=> {
-                    itinerarySchema.find( _id: user.favourites)
-                        .then(favourites => res.send(favourites))
+//       // Return updated 
+//       userSchema.findOneAndUpdate(
+//         { _id: ObjectId(req.body.userId)},
+//             .then((user) => {
+//                 {$push: {favourites: newFavourite}}
+//                 user.save()
+//                 .then((user)=> {
+//                     itinerarySchema.find( _id: user.favourites)
+//                         .then(favourites => res.send(favourites))
 
-                });
-                .catch(err => res.json(err))
-    );
-  });
+//                 });
+//                 .catch(err => res.json(err))"
+//     );
+//   });
+
+  router.put("/favourites/userId", authToken, (req, res) => {
+      userSchema.findByIdAndUpdate ({ userId: (req.body._id)}, 
+        {$push: {favourites: newFavourite}}, function (err, user) {
+            if (err) console.log(err);
+            console.log(user);
+        });
+  })
 
 
 module.exports = router;

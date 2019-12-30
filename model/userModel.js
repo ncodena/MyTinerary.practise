@@ -35,11 +35,11 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
 
-    favourites: [{ 
-        type : Schema.Types.ObjectId, 
+    favourites: { 
+        type : [String], 
         // ref: 'Track' 
 
-    }]
+    }
 });
 
 userSchema.pre('save', async function(next){
