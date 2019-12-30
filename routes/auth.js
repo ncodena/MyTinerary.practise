@@ -133,8 +133,8 @@ router.get('/favourites',
 //     );
 //   });
 
-  router.put("/favourites/userId", authToken, (req, res) => {
-      userSchema.findByIdAndUpdate ({ userId: (req.body._id)}, 
+  router.put("/favourites/_id", authToken, (req, res) => {
+      userSchema.findByIdAndUpdate ({ _id: ObjectId(req.body._id)}, 
         {$push: {favourites: newFavourite}}, function (err, user) {
             if (err) console.log(err);
             console.log(user);
