@@ -23,7 +23,7 @@ router.post('/sign-in', (req, res) => {
 
     const { password, email } = req.body
 
-    // req.body = JSON.parse(Object.keys(req.body)[0]);
+    req.body = JSON.parse(Object.keys(req.body)[0]);
 
 
     // Simple validation
@@ -101,49 +101,22 @@ router.get('/user', authToken, (req, res) => {
 });
 
 // GET Route for FAVOURITES
-router.get('/favourites',
-    (req, res) => {
-        let favouritesArray = req.params.favourites;
-        userSchema.findOne({favourites: favouritesArray })
-            .then(favourite => {
-                res.send(favourite)
-            })
-            .catch(err => console.log(err));
-});
+// router.get('/favourites',
+//     (req, res) => {
+//         let favouritesArray = req.params.favourites;
+//         userSchema.findOne({favourites: favouritesArray })
+//             .then(favourite => {
+//                 res.send(favourite)
+//             })
+//             .catch(err => console.log(err));
+// });
 
 
 
-
-// POST Route for FAVOURITES
-
-// router.put("/favourites/userId", authToken, (req, res) => {
-    
-//       // Return updated 
-//       userSchema.findOneAndUpdate(
-//         { _id: ObjectId(req.body.userId)},
-//             .then((user) => {
-//                 {$push: {favourites: newFavourite}}
-//                 user.save()
-//                 .then((user)=> {
-//                     itinerarySchema.find( _id: user.favourites)
-//                         .then(favourites => res.send(favourites))
-
-//                 });
-//                 .catch(err => res.json(err))"
-//     );
-//   });
-
-//   router.put("/addFavourites/:id", authToken, (req, res) => {
-//       userSchema.findByIdAndUpdate ({ _id: ObjectId(req.body.id)}, 
-//         {$push: {favourites: newFavourite}}, function (err, user) {
-//             if (err) console.log(err);
-//             console.log(user);
-//         });
-//   })
+// PUT Route for PUSHING AND REMOVING FAVOURITES
 
 
-
-  router.put("/addToFavourites/", authToken, (req,res) => {
+  router.put("/UpdatingFavourites/", authToken, (req,res) => {
     userSchema.findOne({
         "_id":req.user.id
       }, (err, user) => {
@@ -156,7 +129,6 @@ router.get('/favourites',
         }
       })
   })
-
 
 
   const updateFavourite = (userId, favId, res, action) => {
@@ -175,54 +147,6 @@ router.get('/favourites',
             return res.send(user) 
       }))
   }
-
-
-             // else {
-                
-            //     if(user.favourites.indexOf(id) === -1){
-            //         return user.favourites.push(id);
-            //     } user.save()
-            //         .then((user) => {
-            //             itinerarySchema.find({ _id: user.favourites })
-            //                 .then(favourites=> res.send(favourites))
-            //         })
-            //         console.log(favourites)
-            // }
-
-//   router.post('/:itinerary/favourite', authToken, (req,res) =>{
-//       userSchema.findById(req.params.id)
-//         .then(function(user) {
-//             if(!user){
-//                 return res.sendStatus(401)
-//             }
-//             else{
-//                 userSchema.favourite(req.itinerary._id)
-//                     .then(function(){
-//                         return req.itinerary.updateFavouriteCount()
-//                         .then(function(){
-//                             return res.json({itinerary: req.itinerary(user)});
-//                         });
-//                     });
-//             }
-//         }).catch(err);
-//   });
-
-
-module.exports = router;
-
-// router.put("/favourites/userId", authToken, (req, res) => {
-    
-//     // Return updated 
-//     userSchema.findOneAndUpdate(
-//       { _id: ObjectId(req.body.userId)},
-//       {$push: {favourites: newFavourite}}
-//       itinerarySchema.findById(
-
-//       )
-//           .then(newFavourite => res.send(newFavourite))
-//           .catch(err => res.json(err))
-//   );
-// });
 
 
 module.exports = router;

@@ -1,6 +1,7 @@
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const UPDATE_FAVOURITES = 'UPDATE_FAVOURITES';
 
 export const signUp = (newUser) => {
 
@@ -28,7 +29,6 @@ export const signUp = (newUser) => {
 const requestUser = () => {
     return{
         type: USER_LOADING
-        
     }   
 }
 
@@ -43,10 +43,15 @@ const failureGettingUser = error => {
     return{
         type: LOGIN_FAILURE,
         error
-        
     }   
 }
 
+// const updatingFavourites = (favourites) => {
+//     return{
+//         type: UPDATE_FAVOURITES,
+
+//     }
+// }
 
 export const login = (user) => {
     console.log("about to send the user to the backend with fetch", user)
@@ -81,23 +86,27 @@ export const login = (user) => {
 
 }
 
-export const testAction = (newUser) => {
-
-    console.log('estamos en el signup usersactions aun en el front end y el newuser es:', newUser)
-
-    console.log(JSON.stringify(newUser))
+export const updatingFavourites = (id, itineraryId) => {
+    
     return async (dispatch) => {
-        return await fetch('/users/register', {
-            method: 'POST',
+        return await fetch(`/auth/UpdatingFavourites/${id}`, {
+            method: 'PUT',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
-            //   "Accept": "application/json"
             },
-            body: JSON.stringify(newUser),
-            mode: 'no-cors'      
+            body: JSON.stringify(),
+            mode: 'no-cors',
+            itinerary: itineraryId      
     }).then(res => res.json())
     .then(data => {
-        console.log(data)
+        if (data.msg) console.log(data.msg)
+            else if (data.token) {
+                localStorage.setItem('token', data.token)
+                dispatch ({
+                    type: UPDATE_FAVOURITES,
+                    favourites: data,
+                })
+            }
     })
     .catch(err => console.error(err))
 

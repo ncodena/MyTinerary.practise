@@ -3,7 +3,7 @@ import React from 'react';
 import '../assets/styles/Login.css'
 import { Button, Form, FormGroup} from 'reactstrap';
 
-import {testAction} from "../store/actions/userActions"
+// import {testAction} from "../store/actions/userActions"
 import { connect } from 'react-redux';
 
 class dummyButton extends React.Component{
@@ -109,7 +109,7 @@ return (
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        testAction: (text) => dispatch(testAction(text))
+        // testAction: (text) => dispatch(testAction(text))
     }
 }
 
