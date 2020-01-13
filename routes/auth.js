@@ -133,13 +133,79 @@ router.get('/favourites',
 //     );
 //   });
 
-  router.put("/favourites/_id", authToken, (req, res) => {
-      userSchema.findByIdAndUpdate ({ _id: ObjectId(req.body._id)}, 
-        {$push: {favourites: newFavourite}}, function (err, user) {
-            if (err) console.log(err);
-            console.log(user);
-        });
+//   router.put("/addFavourites/:id", authToken, (req, res) => {
+//       userSchema.findByIdAndUpdate ({ _id: ObjectId(req.body.id)}, 
+//         {$push: {favourites: newFavourite}}, function (err, user) {
+//             if (err) console.log(err);
+//             console.log(user);
+//         });
+//   })
+
+
+
+  router.put("/addToFavourites/", authToken, (req,res) => {
+    userSchema.findOne({
+        "_id":req.user.id
+      }, (err, user) => {
+        if (err) return res.sendStatus(500)
+        if(!user)return res.sendStatus(403)
+        if (user.favourites.indexOf(req.body.favourites) === -1) {
+            updateFavourite(req.user.id, req.body.favourites, res, "$push")
+        } else {
+            updateFavourite(req.user.id, req.body.favourites, res, "$pull")
+        }
+      })
   })
+
+
+
+  const updateFavourite = (userId, favId, res, action) => {
+    userSchema.findOneAndUpdate({
+        "_id":userId
+      },
+      {
+          [action]: {
+              "favourites": favId
+          }
+      },
+      {new: true},
+      (function(err, user){
+            if (err) return res.sendStatus(500)
+            if(!user)  return res.sendStatus(403)
+            return res.send(user) 
+      }))
+  }
+
+
+             // else {
+                
+            //     if(user.favourites.indexOf(id) === -1){
+            //         return user.favourites.push(id);
+            //     } user.save()
+            //         .then((user) => {
+            //             itinerarySchema.find({ _id: user.favourites })
+            //                 .then(favourites=> res.send(favourites))
+            //         })
+            //         console.log(favourites)
+            // }
+
+//   router.post('/:itinerary/favourite', authToken, (req,res) =>{
+//       userSchema.findById(req.params.id)
+//         .then(function(user) {
+//             if(!user){
+//                 return res.sendStatus(401)
+//             }
+//             else{
+//                 userSchema.favourite(req.itinerary._id)
+//                     .then(function(){
+//                         return req.itinerary.updateFavouriteCount()
+//                         .then(function(){
+//                             return res.json({itinerary: req.itinerary(user)});
+//                         });
+//                     });
+//             }
+//         }).catch(err);
+//   });
 
 
 module.exports = router;

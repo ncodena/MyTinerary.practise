@@ -1,3 +1,4 @@
+// const UserSchema = mongoose.model('User');
 const mongoose = require('mongoose')
 const itinerarySchema = new mongoose.Schema({
     cityId:{
@@ -31,8 +32,22 @@ const itinerarySchema = new mongoose.Schema({
     activities:{
         type: Array,
         required:true
-    }
+    },
+
+    // favouritesCount:{
+    //     type: Number,
+    //     default: 0
+    // }
 
 });
+
+// itinerarySchema.methods.updateFavouriteCount = function() {
+//     const itinerary = this;
+//     return UserSchema.count({favourites: {$in: 
+//         [itinerary._id]}}).then(function(count){
+//             itinerary.favouritesCount = count;
+//             return article.save();
+//         })
+// };
 
 module.exports = mongoose.model('itinerary', itinerarySchema)

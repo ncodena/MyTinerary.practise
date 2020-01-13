@@ -41,7 +41,7 @@ router.post('/register', (req, res) => {
     } = req.body;
 
 
-    req.body = JSON.parse(Object.keys(req.body)[0]);
+    // req.body = JSON.parse(Object.keys(req.body)[0]);
 
    
     // Simple validation
