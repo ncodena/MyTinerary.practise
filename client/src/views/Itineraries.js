@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import '../assets/styles/Itineraries.css';
 import { connect } from 'react-redux';
+import AppNavbar from './../components/appNavbar';
 import CityCard from '../components/cityCard.js';
 import CollapsibleCity from '../components/collapsibleCity.js';
+
 
 class Itineraries extends Component{
 
@@ -41,6 +43,7 @@ class Itineraries extends Component{
         
         return(
             <div className= "body">
+                <AppNavbar/>
                 <div className="cityChildComponent">
                     <CityCard city={this.props.city} />
                 </div>

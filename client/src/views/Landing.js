@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/images/MYtineraryLogo.png';
+import AppNavbar from './../components/appNavbar';
 import arrow from '../assets/images/circled-right-2.png';
 import { Link } from 'react-router-dom'
 import '../assets/styles/Landing.css';
@@ -10,20 +10,17 @@ render() {
 return (
 <div className="LandingPage">
   <div className="fullBody">
-    <header className="landing-header">
-      <img src={logo} className="App-logo" alt="logo" />
-    </header>
+    <AppNavbar/>
     <div className="landing-body">
       <p className="introText">Find your perfect trip, designed by insiders and love their cities.</p>
       <h2>Start browsing</h2>
       <Link to='/cities'className="linkToCities" ><img src={arrow} className="arrowIcon" alt="arrow-icon"></img></Link>
       <p className="question">Want to build your own MYtinerary?</p>
-      <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        Log In
-      </a>
-      <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        Create Account
-      </a> 
+      <Link to='/login'className="linkToLogIn" ><a className="App-link" target="_blank" rel="noopener noreferrer">
+        Log In</a></Link>
+      <Link to='/users'className="linkToSignIn"><a className="App-link" target="_blank" rel="noopener noreferrer">
+        Create an Account
+      </a></Link> 
     </div>
   </div>
 

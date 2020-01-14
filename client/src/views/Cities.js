@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/styles/Cities.css';
 import { connect } from 'react-redux';
+import AppNavbar from './../components/appNavbar';
 import * as cityActions from "../store/actions/cityActions.js"
 import * as itineraryAction from "../store/actions/itineraryAction.js"
 import { Link } from 'react-router-dom'
@@ -61,9 +62,9 @@ gettingCitiesList() {
 render () {
     console.log(this.props.cities)
     if (!this.props.loading)
-     return (
-            
+     return (  
         <div className= "body">
+            <AppNavbar/>
             <form className="citiesForm">
                 <input class="citiesFilter" placeholder="Search by city or country" type="text" id="filter" value={this.state.input}
                     match={this.props.match} onChange={(e)=> this.setState({
