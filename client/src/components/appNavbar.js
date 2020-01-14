@@ -48,6 +48,9 @@ return (
                         <NavItem>
                             <NavLink href='/cities'>Cities</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink href='/favourites'>Your Favourites</NavLink>
+                        </NavItem>
                     </Fragment>
                 </Nav>
             </Collapse>

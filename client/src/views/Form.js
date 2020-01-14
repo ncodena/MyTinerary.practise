@@ -295,6 +295,7 @@ class SignUp extends React.Component{
 render() {
 return (
 <div className="body">
+    
     <Form className="formPage" onSubmit={(e) => this.handleSubmit(e)}>
         <h5>Sign Up</h5>
 

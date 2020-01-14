@@ -23,9 +23,9 @@ router.post('/sign-in', (req, res) => {
 
     const { password, email } = req.body
 
-    req.body = JSON.parse(Object.keys(req.body)[0]);
+    // req.body = JSON.parse(Object.keys(req.body)[0]);
 
-
+console.log(req.body)
     // Simple validation
     if(!email || !password) {
         return res.status(400).json ({msg: 'Please enter all fields'});

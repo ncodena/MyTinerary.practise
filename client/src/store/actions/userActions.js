@@ -6,7 +6,7 @@ export const UPDATE_FAVOURITES = 'UPDATE_FAVOURITES';
 export const signUp = (newUser) => {
 
     console.log('estamos en el signup usersactions aun en el front end y el newuser es:', newUser)
-
+    
     console.log(JSON.stringify(newUser))
     return async (dispatch) => {
         return await fetch('/users/register', {
@@ -15,7 +15,7 @@ export const signUp = (newUser) => {
               'Content-Type': 'application/x-www-form-urlencoded',
             //   "Accept": "application/json"
             },
-            body: JSON.stringify(newUser),
+            body: `email=${newUser.email}&password=${newUser.password}&userName=${newUser.userName}&firstName=${newUser.firstName}&lastName=${newUser.lastName}&country=${newUser.country}`,
             mode: 'no-cors'      
     }).then(res => res.json())
     .then(data => {
@@ -63,7 +63,7 @@ export const login = (user) => {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify(user),
+            body: `email=${user.email}&password=${user.password}`,
             mode: 'no-cors'    
         })
         .then(res => res.json())
