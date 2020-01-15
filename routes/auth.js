@@ -101,15 +101,14 @@ router.get('/user', authToken, (req, res) => {
 });
 
 // GET Route for FAVOURITES
-// router.get('/favourites',
-//     (req, res) => {
-//         let favouritesArray = req.params.favourites;
-//         userSchema.findOne({favourites: favouritesArray })
-//             .then(favourite => {
-//                 res.send(favourite)
-//             })
-//             .catch(err => console.log(err));
-// });
+
+router.get('/favourites', authToken,  (req, res) => {
+        console.log("HERE")
+        // console.log(req.headers.favourites)
+        .then(() =>res.json("GOOD"));
+});
+
+
 
 
 

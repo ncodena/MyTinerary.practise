@@ -13,7 +13,6 @@ export const signUp = (newUser) => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
-            //   "Accept": "application/json"
             },
             body: `email=${newUser.email}&password=${newUser.password}&userName=${newUser.userName}&firstName=${newUser.firstName}&lastName=${newUser.lastName}&country=${newUser.country}`,
             mode: 'no-cors'      
@@ -87,7 +86,6 @@ export const login = (user) => {
 }
 
 export const updatingFavourites = (id, itineraryId) => {
-    
     return async (dispatch) => {
         return await fetch(`/auth/UpdatingFavourites/${id}`, {
             method: 'PUT',
