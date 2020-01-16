@@ -13,13 +13,12 @@ export default function reducer (state = initialState, action) {
             return {
                ...state,
                loading:true
-
             }
         case RECEIVE_FAVOURITES:
             return {
                 ...state,
                 loading: false,
-                cities: action.favourites,
+                favourites: action.favourites,
 
             }
         case FAILURE_FETCHING_FAVOURITES:
@@ -27,7 +26,6 @@ export default function reducer (state = initialState, action) {
                 ...state,
               loading: false,
               error: action.error
-
             }
             default:
                 return state
