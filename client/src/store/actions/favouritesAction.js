@@ -25,7 +25,7 @@ const failureGettingFavourites = error => {
     }   
 }
 
-export function fetchFavourites() {
+export function fetchingFavourites(){
     return function (dispatch) {
         dispatch(requestFavourites())
         return fetch('http://localhost:5000/favourites/all')

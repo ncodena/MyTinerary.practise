@@ -6,7 +6,7 @@ import Cities from './views/Cities';
 import Itineraries from './views/Itineraries'
 import SignUp from './views/Form';
 import LogIn from './views/Login';
-// import Favourites from './views/Favourites';
+import Favourites from './views/Favourites';
 import dummyButton from './views/Testbutton';
 import logger from 'redux-logger';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,7 +37,7 @@ const router = (
       <Route path="/itineraries" component={Itineraries} />
       <Route path="/users" component={SignUp}/>
       <Route path="/login" component={LogIn}/>
-      {/* <Route path="/favourites" component={Favourites}/> */}
+      <Route path="/favourites" component={Favourites}/>
       <Route path="/testpage" component={dummyButton}/>
       <div className="footer">
         {/* <img src={home} className="homeIcon" alt="home-icon"></img>    */}
