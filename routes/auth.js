@@ -16,6 +16,8 @@ const authToken = require('../middleware/authMiddleware')
 
 const ObjectId = require("objectid")
 
+const db = require('./../keys').mongoURI;
+
 
 // POST Route for LOGIN
 
@@ -100,16 +102,18 @@ router.get('/user', authToken, (req, res) => {
         .then(user =>res.json(user));
 });
 
-// GET Route for FAVOURITES
+// GET Route for getting FAVOURITE ITINERARIES
 
-router.get('/favourites', authToken,  (req, res) => {
-        console.log("HERE")
-        // console.log(req.headers.favourites)
-        .then(() =>res.json("GOOD"));
-});
-
-
-
+router.get('/favourites/all', (req, res) => {
+    const userFavs = req.query.q.split(",");
+    const favourites = userFavs.map((id) => ObjectId(id));
+    itinerarySchema.find({
+        "_id": {
+            "$in": favourites
+        }  
+    }).then(favs => res.send(favs))
+        
+})
 
 
 // PUT Route for PUSHING AND REMOVING FAVOURITES
