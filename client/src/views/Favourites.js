@@ -12,33 +12,48 @@ class Favourites extends Component {
         this.props.fetchingFavourites()
     }
 
+    gettingFavouritesList () {
+        let favouritesList = this.props.favourites.map(itinerary =>{
+            return(
+                <Itinerary itinerary={itinerary} key={itinerary._id}/> 
+            ) 
+            
+        })
+
+    return favouritesList
+
+    }
 
 
     render() {
-        console.log(this.props)
-        if (!this.props.loading)
+        // console.log(this.props)
+
         return(
 
-            <div>
+            <div className= "body">
                 <AppNavbar/>
 
-                <div className="favouritesList">
+                {this.props.loading ? <div>Loading...</div> : <div className="favouritesList">{this.gettingFavouritesList()}</div>}
 
-                {this.props.favourites.map(itinerary => <Itinerary itinerary={itinerary} key={itinerary._id}/>)}
-                
+                    
             </div>
-            </div>
+        )
+            
+            
 
-        )
-    else
-        return (
-            <div>Loading...</div>
-        )
+            
+    
 
             
     }
 
-}
+};
+
+
+
+// return (
+//     <div>Loading...</div>
+// )
 const mapStatetoProps = (state) => {
     return {
         favourites: state.favourites.favourites,
