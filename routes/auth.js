@@ -87,24 +87,22 @@ console.log(req.body)
         }   
     })
     .catch(err => console.log(err)) 
-});
+})
 
 // @route GET auth/user
 // @desc Get user data
 // @access Private
-
 router.get('/user', authToken, (req, res) => {
     console.log("inside the get route")
     userSchema.findById(req.user.id)
-    // console.log(req.user.id)
-        // .select('-password')
-        // console.log(password)
+        .select('-password')
         .then(user =>res.json(user));
-});
+})
 
 // GET Route for getting FAVOURITE ITINERARIES
 
 router.get('/favourites/all', (req, res) => {
+    console.log('req', req.query)
     const userFavs = req.query.q.split(",");
     const favourites = userFavs.map((id) => ObjectId(id));
     itinerarySchema.find({

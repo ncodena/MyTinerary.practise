@@ -7,7 +7,8 @@ const initialState = {
     loading: false,
     currentUser: {},
     error: '',
-    favourites:[]
+    favourites:[],
+    isAuthenticated: null
 };
 
 export default function (state = initialState, action) {
@@ -20,10 +21,11 @@ export default function (state = initialState, action) {
         case USER_LOADED:
             return {
                ...state,
+               ...action.payload,
                loading: false,
                currentUser: action.currentUser,
+               isAuthenticated: true,
                favourites: action.favourites
-
             };
         case LOGIN_FAILURE:
             return {

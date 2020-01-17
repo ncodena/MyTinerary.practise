@@ -26,13 +26,27 @@ const failureGettingFavourites = error => {
 }
 
 export function fetchingFavourites(){
-    return function (dispatch) {
+    return async function (dispatch) {
         dispatch(requestFavourites())
-        return fetch('http://localhost:5000/favourites/all')
-            .then(response => response.json()) 
+        const user = await fetch(`/auth/user`, {
+            method: "GET",
+            headers: {
+                "x-auth-token": localStorage.getItem("token")
+            }
+        })
+        .then(res => res.json())
+        .then( user => user);
+        
+        let favs = user.favourites.join(",")
+        return await fetch(`/auth/favourites/all?q=${favs}`,{
+            method: 'GET',  
+        })
+            .then(response => response.json())
             .then (json => {
-                dispatch(receiveFavourites(json)) 
-            })
+                console.log(json)
+                if (json.msg) console.log(json.msg)
+                else dispatch(receiveFavourites(json)) 
+            })   
             .catch(error => {
                 dispatch(failureGettingFavourites(error.message))
             })

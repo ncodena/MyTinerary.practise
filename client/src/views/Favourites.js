@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AppNavbar from './../components/appNavbar';
 // import favouritesAction from '../store/actions/favouritesAction'
 import * as favouritesAction from '../store/actions/favouritesAction';
+import Itinerary from "../components/collapsibleCity";
 import { connect } from 'react-redux';
 
 
@@ -14,7 +15,7 @@ class Favourites extends Component {
 
 
     render() {
-        console.log(this.props.favourites)
+        console.log(this.props)
         if (!this.props.loading)
         return(
 
@@ -23,7 +24,7 @@ class Favourites extends Component {
 
                 <div className="favouritesList">
 
-                {/* {this.gettingFavouritesList()} */}
+                {this.props.favourites.map(itinerary => <Itinerary itinerary={itinerary} key={itinerary._id}/>)}
                 
             </div>
             </div>
@@ -41,7 +42,8 @@ class Favourites extends Component {
 const mapStatetoProps = (state) => {
     return {
         favourites: state.favourites.favourites,
-        loading: state.favourites.loading
+        loading: state.favourites.loading,
+        isAuthenticated: state.auth.isAuthenticated,
     }
 };
 
