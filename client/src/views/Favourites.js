@@ -16,14 +16,14 @@ class Favourites extends Component {
         let favouritesList = this.props.favourites.map(itinerary =>{
             return(
                 <Itinerary itinerary={itinerary} key={itinerary._id}/> 
-            ) 
-            
+            )
         })
-
-    return favouritesList
-
+            if (favouritesList.length === 0) {
+            favouritesList = (
+            <div className="errorMessage">NO ITINERARIES SAVED YET</div>  
+        )} 
+        return favouritesList
     }
-
 
     render() {
         // console.log(this.props)
