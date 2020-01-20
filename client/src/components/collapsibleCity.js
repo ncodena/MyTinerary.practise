@@ -47,7 +47,6 @@ class CollapsibleCity extends Component{
                     <div className="accordionBody">
                         {this.getRenderedActivities()}
                     </div>
-                        
                     <div className="buttonContainer">
                         <button onClick={this.toggle}>{this.state.isOpen ? 'Read Less' : 'Read More'}</button>
                     </div>
