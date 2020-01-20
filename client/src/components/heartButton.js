@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import '../assets/styles/heartButton.css'
 
 
 class HeartButton extends Component {
@@ -8,26 +9,28 @@ class HeartButton extends Component {
         super(props);
         this.state = {
             addedToFavourites: false};
+
+            // this.addToFavourites = this.addToFavourites.bind(this);
         }
 
 
-        addToFavorites(){
+        addToFavorites(ev){
+            // console.log(ev.target)
+            this.setState({
+                addedToFavourites: !this.state.addedToFavourites
+
+            });
 
         }
 
         render() {
 
-            return(
-                <div>
-                <FontAwesomeIcon icon={faHeart} />
+            const {addedToFavourites} = this.state;
 
-
-
-                </div>
-                        
-                    
-
-
+            return(  
+                <span onClick={() => this.addToFavorites()}>
+                {addedToFavourites ? <FontAwesomeIcon icon={faHeart} className='heartFavourite'/> : <FontAwesomeIcon icon={faHeart} className='heartIcon'/>} 
+                </span>
             );
         }
     }

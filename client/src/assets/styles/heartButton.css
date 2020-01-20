@@ -1,0 +1,19 @@
+.heartIcon{
+    size: 50px;
+    color: #ffffff ;
+    position: absolute;
+    z-index: 100;
+    width: 180px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.heartFavourite{
+    size: 50px;
+    color: red;
+    position: absolute;
+    z-index: 100;
+    width: 180px;
+    display: flex;
+    justify-content: flex-end;
+}
