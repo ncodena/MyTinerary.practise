@@ -17,3 +17,10 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.buttonC{
+    width: 49%;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+}

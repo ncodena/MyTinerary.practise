@@ -37,11 +37,12 @@ class CollapsibleCity extends Component{
                 <div className="accordion-group">
                     <div className="accordion-heading">
                         <div className="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">
-                            
                             <h2>{itinerary.title}</h2>
                             <p className="infoContainer">{itinerary.rating} {itinerary.duration} {itinerary.price}</p>
                             <div className="imageContainer">
+                                <span className='hello'>
                                 <HeartButton/>
+                                </span>
                                 <img className="itineraryImage" src={itinerary.img} alt=""/> 
                             </div>
                              

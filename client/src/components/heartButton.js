@@ -28,7 +28,7 @@ class HeartButton extends Component {
             const {addedToFavourites} = this.state;
 
             return(  
-                <span onClick={() => this.addToFavorites()}>
+                <span className='buttonC' onClick={() => this.addToFavorites()}>
                 {addedToFavourites ? <FontAwesomeIcon icon={faHeart} className='heartFavourite'/> : <FontAwesomeIcon icon={faHeart} className='heartIcon'/>} 
                 </span>
             );
