@@ -8,10 +8,10 @@ const initialState = {
     currentUser: {},
     error: '',
     favourites:[],
-    isAuthenticated: null
+    isAuthenticated: null,
 };
 
-export default function (state = initialState, action) {
+export default function authReducer (state = initialState, action) {
     switch(action.type) {
         case USER_LOADING:
             return {

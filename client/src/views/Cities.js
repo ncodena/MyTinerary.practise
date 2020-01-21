@@ -66,7 +66,7 @@ render () {
         <div className= "body">
             <AppNavbar/>
             <form className="citiesForm">
-                <input class="citiesFilter" placeholder="Search by city or country" type="text" id="filter" value={this.state.input}
+                <input className="citiesFilter" placeholder="Search by city or country" type="text" id="filter" value={this.state.input}
                     match={this.props.match} onChange={(e)=> this.setState({
                 input: e.target.value
                 })} ></input>

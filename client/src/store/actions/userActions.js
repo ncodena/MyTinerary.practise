@@ -2,6 +2,7 @@ export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const UPDATE_FAVOURITES = 'UPDATE_FAVOURITES';
+export const REQUEST_FAVOURITES = 'REQUEST_FAVOURITES'
 
 export const signUp = (newUser) => {
 
@@ -25,7 +26,7 @@ export const signUp = (newUser) => {
     }
 }
 
-const requestUser = () => {
+const requestUser = (id) => {
     return{
         type: USER_LOADING
     }   
@@ -44,6 +45,14 @@ const failureGettingUser = error => {
         error
     }   
 }
+
+const requestFavourites = () => {
+    return{
+        type: REQUEST_FAVOURITES
+        
+    }   
+}
+
 
 // const updatingFavourites = (favourites) => {
 //     return{
@@ -85,29 +94,52 @@ export const login = (user) => {
 
 }
 
-export const updatingFavourites = (id, itineraryId) => {
-    return async (dispatch) => {
-        return await fetch(`/auth/UpdatingFavourites/${id}`, {
+// export const updatingFavourites = (itineraryId) => {
+//     console.log("about to send the user to the backend with fetch", itineraryId)
+//     return async (dispatch) => {
+//         return await fetch('/auth/UpdatingFavourites/', {
+//             method: 'PUT',
+//             headers: {
+//               'Content-Type': 'application/x-www-form-urlencoded',
+//             },
+//             body: JSON.stringify(id),
+//             mode: 'cors',
+//             favourites: itineraryId      
+//     })
+
+//     .then(res => res.json()) 
+    
+//     .then(data => {
+//         if (data.msg) console.log(data.msg)
+//             else if (data.token) {
+//                 localStorage.setItem('token', data.token)
+//                 dispatch ({
+//                     type: UPDATE_FAVOURITES,
+//                     favourites: data.favourites,
+//                 })
+//             }
+//     })
+//     .catch(err => console.error(err))
+
+//     }
+// }
+export const updatingFavourites = (itineraryId) => {
+    return async function (dispatch) {
+        return await fetch('/auth/UpdatingFavourites/', {
+            
             method: 'PUT',
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "x-auth-token": localStorage.getItem("token")
             },
-            body: JSON.stringify(),
-            mode: 'no-cors',
-            itinerary: itineraryId      
-    }).then(res => res.json())
-    .then(data => {
-        if (data.msg) console.log(data.msg)
-            else if (data.token) {
-                localStorage.setItem('token', data.token)
-                dispatch ({
-                    type: UPDATE_FAVOURITES,
-                    favourites: data,
-                })
-            }
-    })
-    .catch(err => console.error(err))
-
+            body: `favourites=${itineraryId}`,
+            mode: 'cors'   
+        })
+            
+        .then(res => res.json()) 
+        .then(data => {
+            console.log("favsdata", data)
+        })
     }
 }
 

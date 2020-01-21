@@ -59,9 +59,10 @@ const mapStatetoProps = (state) => {
     return {
         itineraries: state.itineraries.itineraries,
         cities: state.cities.cities,
-        city: state.cities.city
+        city: state.cities.city,
+        user: state.auth.currentUser
     }
 };
 
 
-export default connect(mapStatetoProps) (Itineraries);
+export default connect(mapStatetoProps, null) (Itineraries);

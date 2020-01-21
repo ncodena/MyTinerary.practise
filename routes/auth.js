@@ -101,7 +101,7 @@ router.get('/user', authToken, (req, res) => {
 
 // GET Route for getting FAVOURITE ITINERARIES
 
-router.get('/favourites/all', (req, res) => {
+router.get('/favourites/all',  (req, res) => {
     console.log('req', req.query)
     const userFavs = req.query.q.split(",");
     const favourites = userFavs.map((id) => ObjectId(id));
@@ -118,9 +118,11 @@ router.get('/favourites/all', (req, res) => {
 
 
   router.put("/UpdatingFavourites/", authToken, (req,res) => {
+      console.log(req.body)
     userSchema.findOne({
         "_id":req.user.id
       }, (err, user) => {
+          console.log(user)
         if (err) return res.sendStatus(500)
         if(!user)return res.sendStatus(403)
         if (user.favourites.indexOf(req.body.favourites) === -1) {

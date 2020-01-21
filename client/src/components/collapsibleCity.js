@@ -29,6 +29,12 @@ class CollapsibleCity extends Component{
         }
     }
 
+    gettingItinerariesList() {
+            const {itinerary} = this.props;
+            return(
+                <HeartButton itinerary={itinerary} key={itinerary._id}/>
+    )};  
+
     render (){
         const {itinerary} = this.props
         console.log(itinerary)
@@ -41,7 +47,7 @@ class CollapsibleCity extends Component{
                             <p className="infoContainer">{itinerary.rating} {itinerary.duration} {itinerary.price}</p>
                             <div className="imageContainer">
                                 <span className='hello'>
-                                <HeartButton/>
+                                {this.gettingItinerariesList()} 
                                 </span>
                                 <img className="itineraryImage" src={itinerary.img} alt=""/> 
                             </div>
@@ -56,8 +62,6 @@ class CollapsibleCity extends Component{
                     </div>
                 </div>   
             </div>
-            
-             
         )
     }
 }
