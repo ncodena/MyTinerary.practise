@@ -6,11 +6,13 @@ const jwt = require("jsonwebtoken");
 
 const key = require ('../keys');
 
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
-const userSchema = require('../model/userModel')
+const userSchema = require('../model/userModel');
 
-const itinerarySchema = require('../model/Itinerary')
+const itinerarySchema = require('../model/Itinerary');
+
+const commentSchema = require('../model/commentModel');
 
 const authToken = require('../middleware/authMiddleware')
 
@@ -149,7 +151,39 @@ router.get('/favourites/all',  (req, res) => {
             if(!user)  return res.sendStatus(403)
             return res.send(user) 
       }))
-  }
+  };
 
+router.post("/:itinerary/comments", authToken, (req, res) => {
+    // console.log(req.user)
+    // userSchema.findById({
+    //     "_id": req.user.id
+    // }, (err, user) => {
+    //     if (err) return res.sendStatus(500)
+    //     if(!user)return res.sendStatus(403)
+    // });
+
+    // console.log(req.body)
+
+
+    const newComment = new commentSchema({
+        author: req.user.id,
+        itinerary: req.body.itinerary,
+        body: req.body.body,
+    });
+
+    console.log(newComment)
+
+
+    newComment.save().then(comment => res.send("comment created"))
+})
+
+router.get("/:itinerary/comments", authToken, (req, res) => {
+    if (!req.user.id) return res.status(401).send("Log In")
+    if (!req.body.itinerary) return res.status(403).send("No Itinerary")
+
+    commentSchema
+    .find({itinerary: req.body.itinerary})
+    .then(comments => res.send(comments))
+})
 
 module.exports = router;

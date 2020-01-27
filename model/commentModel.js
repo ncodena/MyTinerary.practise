@@ -9,7 +9,8 @@ const commentSchema = new mongoose.Schema({
 
     itinerary: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref:'itinerary'},
+        ref:'itinerary'
+    },
 
     date: {
         type: Date,

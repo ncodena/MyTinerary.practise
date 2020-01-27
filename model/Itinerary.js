@@ -34,11 +34,10 @@ const itinerarySchema = new mongoose.Schema({
         required:true
     },
 
-    // favouritesCount:{
-    //     type: Number,
-    //     default: 0
-    // }
-
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref:'comment',
+    }],
 });
 
 // itinerarySchema.methods.updateFavouriteCount = function() {
