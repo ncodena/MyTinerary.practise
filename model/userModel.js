@@ -38,7 +38,11 @@ const userSchema = new mongoose.Schema({
     favourites: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Itinerary'
-    }] 
+    }],
+
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+    }]  
 });
 
 // userSchema.methods.favourite = function (id) {

@@ -17,7 +17,7 @@ class HeartButton extends Component {
     }
 
         componentDidMount() {
-            this.props.fetchingFavourites()
+            // this.props.fetchingFavourites()
         }
 
 
@@ -34,6 +34,7 @@ class HeartButton extends Component {
 
             await this.props.updatingFavourites(itineraryId)
             await this.props.fetchingFavourites();
+            return
 
         }
 
