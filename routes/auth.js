@@ -154,16 +154,6 @@ router.get('/favourites/all',  (req, res) => {
   };
 
 router.post("/:itinerary/comments", authToken, (req, res) => {
-    // console.log(req.user)
-    // userSchema.findById({
-    //     "_id": req.user.id
-    // }, (err, user) => {
-    //     if (err) return res.sendStatus(500)
-    //     if(!user)return res.sendStatus(403)
-    // });
-
-    // console.log(req.body)
-
 
     const newComment = new commentSchema({
         author: req.user.id,
@@ -185,5 +175,18 @@ router.get("/:itinerary/comments", authToken, (req, res) => {
     .find({itinerary: req.body.itinerary})
     .then(comments => res.send(comments))
 })
+
+// router.get("/users/comments", (req, res) => {
+//     console.log("inside the get route")
+//     userSchema
+//     .findById({"_id": req.body.id})
+//     .then(user =>res.json(user));
+
+//     commentSchema
+//     .find({itinerary: req.body.itinerary})
+//     .then(comments => res.send(comments))
+// })
+
+
 
 module.exports = router;
