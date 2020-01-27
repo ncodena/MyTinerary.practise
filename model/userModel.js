@@ -39,29 +39,8 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Itinerary'
     }],
-
-    comments: [{
-        type: mongoose.Schema.Types.ObjectId,
-    }]  
 });
 
-// userSchema.methods.favourite = function (id) {
-//     if(this.favourites.indexOf(id) === -1){
-//         this.favourites.push(id);
-//     }
-//     return this.save();
-// };
-
-// userSchema.methods.unfavourite = function(id) {
-//     this-favourites.remove(id);
-//     return this.save();
-// };
-
-// userSchema.methods.isFavourite = function (id) {
-//     return this.favourites.some(function(favouriteId){
-//         return id.toString() === favouriteId.toString();
-//     })
-// };
 
 userSchema.pre('save', async function(next){
     try {
