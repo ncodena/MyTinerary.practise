@@ -189,7 +189,7 @@ router.post("/:itinerary/comments", authToken, (req, res) => {
 })
 
 router.get("/:itinerary/comments", authToken, (req, res) => {
-    if (!req.user.id) return res.status(401).send("Log In")
+    if (!req.user.id) return res.status(401).send("Please, log in to show the comments")
     if (!req.body.itinerary) return res.status(403).send("No Itinerary")
 
     commentSchema
@@ -205,9 +205,8 @@ router.get("/:itinerary/comments", authToken, (req, res) => {
 router.delete('/:itinerary/comments/:comment', authToken, (req, res) => {
     commentSchema
     .findOne({comment: req.params.id})
-    .then(comment => comment.remove().then(comment => res.send("comment deleted")))
+    .then(comment => comment.remove().then(comment => res.send("This comment has been successfully deleted")))
     .catch(err => res.status(404).json({success:false}))
-    
 });
 
 
