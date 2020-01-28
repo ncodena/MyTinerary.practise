@@ -115,7 +115,10 @@ router.get('/getUser/:id',
     .then(user =>res.json(user))
     .catch(err => console.log(err));
 });
-// GET Route for getting FAVOURITE ITINERARIES
+
+// @route GET auth/favourites/all
+// @desc Get user's favourites itineraries data
+// @access Private
 
 router.get('/favourites/all',  (req, res) => {
     console.log('req', req.query)
@@ -129,9 +132,9 @@ router.get('/favourites/all',  (req, res) => {
         
 })
 
-
-// PUT Route for PUSHING AND REMOVING FAVOURITES
-
+// @route PUT auth/UpdatingFavourites/
+// @desc PUSHING AND REMOVING favourite itineraries data from an user
+// @access Private
 
   router.put("/UpdatingFavourites/", authToken, (req,res) => {
       console.log(req.body)
@@ -167,6 +170,10 @@ router.get('/favourites/all',  (req, res) => {
       }))
   };
 
+// @route POST auth/:itinerary/comments
+// @desc Post comments from any user profile
+// @access Private
+
 router.post("/:itinerary/comments", authToken, (req, res) => {
 
     const newComment = new commentSchema({
@@ -190,7 +197,18 @@ router.get("/:itinerary/comments", authToken, (req, res) => {
     .then(comments => res.send(comments))
 })
 
+// @route DELETE auth/:itinerary/comments/:coment
+// @desc Remove comments from any user profile
+// @access Private
 
+
+router.delete('/:itinerary/comments/:comment', authToken, (req, res) => {
+    commentSchema
+    .findOne({comment: req.params.id})
+    .then(comment => comment.remove().then(comment => res.send("comment deleted")))
+    .catch(err => res.status(404).json({success:false}))
+    
+});
 
 
 
