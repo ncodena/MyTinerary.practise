@@ -101,6 +101,20 @@ router.get('/user', authToken, (req, res) => {
         .then(user =>res.json(user));
 })
 
+// @route GET auth/getUser/:id
+// @desc Get user data
+// @access Public
+
+router.get('/getUser/:id', 
+    (req, res) => {
+    console.log("inside the get route")
+    let userRequested = req.params.id;
+    console.log(req.params.id)
+    userSchema.findOne({_id: userRequested})
+    
+    .then(user =>res.json(user))
+    .catch(err => console.log(err));
+});
 // GET Route for getting FAVOURITE ITINERARIES
 
 router.get('/favourites/all',  (req, res) => {
@@ -176,16 +190,7 @@ router.get("/:itinerary/comments", authToken, (req, res) => {
     .then(comments => res.send(comments))
 })
 
-// router.get("/users/comments", (req, res) => {
-//     console.log("inside the get route")
-//     userSchema
-//     .findById({"_id": req.body.id})
-//     .then(user =>res.json(user));
 
-//     commentSchema
-//     .find({itinerary: req.body.itinerary})
-//     .then(comments => res.send(comments))
-// })
 
 
 
