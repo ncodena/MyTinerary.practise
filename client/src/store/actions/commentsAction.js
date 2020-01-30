@@ -11,6 +11,8 @@ const requestComments = () => {
     }   
 }
 
+let i = [];
+
 const receiveComments = comments => {
     return{
         type: RECEIVE_COMMENTS,
@@ -27,26 +29,29 @@ const failureGettingComments = error => {
     }   
 }
 
-const receiveUser = user => {
-    return{
-        type: RECEIVE_USER,
-        user
-    }
+// const receiveUser = user => {
+//     return{
+//         type: RECEIVE_USER,
+//         user
+//     }
     
-}
+// }
 
-const fetchUser = (id) => {
-    return function (dispatch){
-        dispatch(receiveUser)
+// const fetchUser = (id) => {
+//     return function (dispatch){
+//         dispatch(receiveUser)
 
-            let user = fetch(`http://localhost:5000/auth/getUser/${id}`)
+//             let user = fetch(`http://localhost:5000/auth/getUser/${id}`)
 
-            return user
-    } 
+//             .then(response => response.json())
+//             .then(user => user)
 
-}
+//             return user
+//     } 
 
-export function fetchComments() {
+// }
+
+export function fetchComments(itinerary) {
     return function (dispatch) {
         dispatch(requestComments())
     return fetch(`http://localhost:5000/auth/${itinerary}/comments`, {
@@ -57,10 +62,10 @@ export function fetchComments() {
     })
         .then(response => response.json())
         .then (json => {
+            console.log(json)
             dispatch(
-                fetchUser(user),
-                receiveComments(json)
-                )
+                // fetchUser(user),
+                receiveComments(json))
         })
         .catch(error => {
             dispatch(failureGettingComments(error.message))

@@ -1,6 +1,6 @@
-import {REQUEST_COMMENTS, RECEIVE_COMMENTS, FAILURE_FETCHING_COMMENTS} from '../actions/commentsAction';
-import {RECEIVE_FAVOURITES} from '../actions/commentsAction';
-import {FAILURE_FETCHING_FAVOURITES} from '../actions/commentsAction';
+import {REQUEST_COMMENTS} from '../actions/commentsAction';
+import {RECEIVE_COMMENTS} from '../actions/commentsAction';
+import {FAILURE_FETCHING_COMMENTS} from '../actions/commentsAction';
 import {RECEIVE_USER} from '../actions/commentsAction';
 
 const initialState = {

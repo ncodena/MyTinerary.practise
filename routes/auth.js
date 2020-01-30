@@ -106,15 +106,18 @@ router.get('/user', authToken, (req, res) => {
 // @access Public
 
 router.get('/getUser/:id', 
-    (req, res) => {
+   async (req, res) => {
     console.log("inside the get route")
     let userRequested = req.params.id;
     console.log(req.params.id)
-    userSchema.findOne({_id: userRequested})
-    
-    .then(user =>res.json(user))
-    .catch(err => console.log(err));
+    await getUserById(userRequested).then(user =>res.json(user)).catch(err => console.log(err));
 });
+
+const getUserById = async (id) => {
+    return await userSchema.findOne({_id: id})
+}
+
+
 
 // @route GET auth/favourites/all
 // @desc Get user's favourites itineraries data
@@ -194,8 +197,39 @@ router.get("/:itinerary/comments", authToken, (req, res) => {
 
     commentSchema
     .find({itinerary: req.body.itinerary})
-    .then(comments => res.send(comments))
+    .then(async comments => {
+
+       let modifiedComments =  [];
+       for (el of comments) {
+           let comment = await modifyComment(el)
+            modifiedComments.push(comment)
+        }
+       console.log(modifiedComments)
+       res.send(modifiedComments)
+        })
 })
+const modifyComment = async (comment) => {
+    const {author, body, itinerary, date} = comment;
+    let user = await getUserById(ObjectId(author)).then(user => { 
+        return { 
+        id: user._id,
+        userName: user.userName,
+        img:user.img
+    }
+})
+    console.log({
+        user,
+        body,
+        itinerary,
+        date
+    })
+    return {
+        user,
+        body,
+        itinerary,
+        date
+    }
+}
 
 // @route DELETE auth/:itinerary/comments/:coment
 // @desc Remove comments from any user profile
