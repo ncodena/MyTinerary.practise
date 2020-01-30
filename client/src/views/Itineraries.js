@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import AppNavbar from './../components/appNavbar';
 import CityCard from '../components/cityCard.js';
 import CollapsibleCity from '../components/collapsibleCity.js';
+import Comments from '../components/comments';
 
 
 class Itineraries extends Component{
@@ -25,14 +26,25 @@ class Itineraries extends Component{
     
     } 
 
-    gettingItinerariesList() {
+    gettingItinerariesList = () => {
         
         let itinerariesList = this.props.itineraries.map(itinerary=> {
         return (
-            <CollapsibleCity itinerary={itinerary} key={itinerary._id}/>
+            <CollapsibleCity itinerary={itinerary} key={itinerary._id}/> 
         )
         })
         return itinerariesList
+    }
+
+    getCommentsList = () => {
+        let commentsList = this.props.itineraries.map(itinerary=> {
+            return (
+                <Comments itinerary={itinerary} key={itinerary._id}/>
+            )
+        })
+
+        return commentsList
+
     }
 
     render () {
@@ -49,6 +61,7 @@ class Itineraries extends Component{
                 </div>
                 <div className="dropdownContainer">
                     {this.gettingItinerariesList()} 
+                    {this.getCommentsList()}
                 </div>
         </div>
         )
