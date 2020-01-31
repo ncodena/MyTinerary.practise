@@ -28,7 +28,8 @@ app.use('/users', require('./routes/users'))
 app.use('/auth', require('./routes/auth'))
 
 mongoose.connect(db, { 
-    userNewUrlParser: true,
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
     useCreateIndex: true, 
     dbName: "mernproject" })
     .then(() => console.log('Connection to Mongo DB established'))

@@ -107,9 +107,9 @@ router.get('/user', authToken, (req, res) => {
 
 router.get('/getUser/:id', 
    async (req, res) => {
-    console.log("inside the get route")
+    // console.log("inside the get route")
     let userRequested = req.params.id;
-    console.log(req.params.id)
+    // console.log(req.params.id)
     await getUserById(userRequested).then(user =>res.json(user)).catch(err => console.log(err));
 });
 
@@ -124,7 +124,7 @@ const getUserById = async (id) => {
 // @access Private
 
 router.get('/favourites/all',  (req, res) => {
-    console.log('req', req.query)
+    // console.log('req', req.query)
     const userFavs = req.query.q.split(",");
     const favourites = userFavs.map((id) => ObjectId(id));
     itinerarySchema.find({
@@ -140,7 +140,7 @@ router.get('/favourites/all',  (req, res) => {
 // @access Private
 
   router.put("/UpdatingFavourites/", authToken, (req,res) => {
-      console.log(req.body)
+    //   console.log(req.body)
     userSchema.findOne({
         "_id":req.user.id
       }, (err, user) => {
@@ -185,18 +185,21 @@ router.post("/:itinerary/comments", authToken, (req, res) => {
         body: req.body.body,
     });
 
-    console.log(newComment)
+    // console.log(newComment)
 
 
     newComment.save().then(comment => res.send("comment created"))
 })
 
 router.get("/:itinerary/comments", authToken, (req, res) => {
-    if (!req.user.id) return res.status(401).send("Please, log in to show the comments")
-    if (!req.body.itinerary) return res.status(403).send("No Itinerary")
+    const {itinerary} = req.params
+    if (!req.user.id) return res.status(401).send({"msg": "Please, log in to show the comments"})
+    if (!itinerary) return res.status(403).send({"msg": "No Itinerary"})
+    // if (!req.body.itinerary) return res.status(403).send({"msg": "No Itinerary"})
+    // console.log(req.body.itinerary)
 
     commentSchema
-    .find({itinerary: req.body.itinerary})
+    .find({itinerary: itinerary})
     .then(async comments => {
 
        let modifiedComments =  [];
@@ -204,7 +207,7 @@ router.get("/:itinerary/comments", authToken, (req, res) => {
            let comment = await modifyComment(el)
             modifiedComments.push(comment)
         }
-       console.log(modifiedComments)
+    //    console.log(modifiedComments)
        res.send(modifiedComments)
         })
 })
@@ -214,15 +217,16 @@ const modifyComment = async (comment) => {
         return { 
         id: user._id,
         userName: user.userName,
-        img:user.img
+        img:user.img,
+        country: user.country,
     }
 })
-    console.log({
-        user,
-        body,
-        itinerary,
-        date
-    })
+    // console.log({
+    //     user,
+    //     body,
+    //     itinerary,
+    //     date
+    // })
     return {
         user,
         body,

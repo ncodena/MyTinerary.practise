@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import HeartButton from './heartButton';
+import Comments from '../components/comments';
 
 class CollapsibleCity extends Component{
     state = {
@@ -19,14 +20,22 @@ class CollapsibleCity extends Component{
                                 <div className="activityContainer">
                                     <img className="activityImage" src={activity.img} alt=""/> 
                                     <div className="activityName">{activity.title}</div>
-                                </div> 
-                              
+                                </div>     
                         </Fragment>
                     )
                 })
 
             )
         }
+    }
+
+    getCommentsList = () => {
+        const {itinerary} = this.props
+        if (this.state.isOpen) {
+            return (
+                <Comments itinerary={itinerary} key={itinerary._id}/>
+                )
+            }
     }
 
     gettingItinerariesList() {
@@ -56,6 +65,7 @@ class CollapsibleCity extends Component{
                     </div>
                     <div className="accordionBody">
                         {this.getRenderedActivities()}
+                        {this.getCommentsList()}
                     </div>
                     <div className="buttonContainer">
                         <button onClick={this.toggle}>{this.state.isOpen ? 'Read Less' : 'Read More'}</button>

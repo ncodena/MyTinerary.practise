@@ -11,7 +11,6 @@ const requestComments = () => {
     }   
 }
 
-let i = [];
 
 const receiveComments = comments => {
     return{
@@ -52,11 +51,13 @@ const failureGettingComments = error => {
 // }
 
 export function fetchComments(itinerary) {
+    console.log("about get comments from the backend with fetch", itinerary)
     return function (dispatch) {
         dispatch(requestComments())
     return fetch(`http://localhost:5000/auth/${itinerary}/comments`, {
         method: 'GET',
         headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
             "x-auth-token": localStorage.getItem("token")
         }
     })
