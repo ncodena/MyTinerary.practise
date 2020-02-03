@@ -35,7 +35,6 @@ class Comments extends Component {
                         </CardBody>
                 </Card>
             )
-
             
         })
         return commentsList
