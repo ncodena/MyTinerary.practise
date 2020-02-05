@@ -25,7 +25,7 @@ class Comments extends Component {
         let commentsList = this.props.comments.map(comment => {
             return (
                 <Card>
-                    <CardImg left width="25%" src={comment.user.img} alt="user image" />
+                    <CardImg width="25%" src={comment.user.img} alt="user image" />
                         <CardBody>
                             <CardTitle><strong>{comment.user.userName}</strong>({comment.user.country})</CardTitle>
                             <CardText>{comment.body}</CardText>
