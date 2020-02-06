@@ -16,11 +16,11 @@ return (
       <h2>Start browsing</h2>
       <Link to='/cities'className="linkToCities" ><img src={arrow} className="arrowIcon" alt="arrow-icon"></img></Link>
       <p className="question">Want to build your own MYtinerary?</p>
-      <Link to='/login'className="linkToLogIn" ><a className="App-link" target="_blank" rel="noopener noreferrer">
-        Log In</a></Link>
-      <Link to='/users'className="linkToSignIn"><a className="App-link" target="_blank" rel="noopener noreferrer">
+      <Link to='/login'className="linkToLogIn" ><p className="App-link" target="_blank" rel="noopener noreferrer">
+        Log In</p></Link>
+      <Link to='/users'className="linkToSignIn"><p className="App-link" target="_blank" rel="noopener noreferrer">
         Create an Account
-      </a></Link> 
+      </p></Link> 
     </div>
   </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/styles/index.css';
 import Landing from "./views/Landing"
-import Cities from './views/Cities';
+import Cities from './views/Cities'; 
 import Itineraries from './views/Itineraries'
 import SignUp from './views/Form';
 import LogIn from './views/Login';
@@ -10,6 +10,7 @@ import Favourites from './views/Favourites';
 import dummyButton from './views/Testbutton';
 import logger from 'redux-logger';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 // import home from './assets/images/homeIcon.png'
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'

@@ -9,12 +9,10 @@ Container,
 NavLink
 }from 'reactstrap' ;
 
+import '../assets/styles/appNavbar.css';
 import { Link } from 'react-router-dom'
-
 import LogIn from './../views/Login';
 import SignUp from './../views/Form';
-// import Logout from './auth/Logout';
-// import {connect} from 'react-redux';
 import logo from '../assets/images/MYtineraryLogo.png';
 import Cities from '../views/Cities';
 
@@ -32,9 +30,11 @@ class AppNavbar extends Component {
     render(){
 return (
 <div>
-    <Navbar color="secondary" dark expand="sm" className="mb-5">
+    <Navbar color="dark" dark expand="sm">
         <Container>
-            <img width='50%' src={logo} alt='mytinerary-logo'/>
+            <div className="logoContainer">
+                <Link to='/'className="linkToLanding"><img width='50%' src={logo} alt='mytinerary-logo'/></Link>
+            </div>
             <NavbarToggler onClick={this.toggle}></NavbarToggler>
             <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
