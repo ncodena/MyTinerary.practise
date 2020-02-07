@@ -2,8 +2,6 @@ import React from 'react';
 // import { Link } from 'react-router-dom'
 import '../assets/styles/Login.css'
 import { Button, Form, Label, FormGroup} from 'reactstrap';
-import AppNavbar from './../components/appNavbar';
-
 import {login} from "../store/actions/userActions"
 import { connect } from 'react-redux';
 
@@ -54,7 +52,6 @@ class LogIn extends React.Component{
 render() {
 return (
 <div className="body">
-    <AppNavbar/>
     <Form className="loginPage" onSubmit={(e) => this.handleSubmit(e)}>
         <h5>Log In</h5>
 

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AppNavbar from './../components/appNavbar';
 // import favouritesAction from '../store/actions/favouritesAction'
 import * as favouritesAction from '../store/actions/favouritesAction';
 import Itinerary from "../components/collapsibleCity";
@@ -31,7 +30,6 @@ class Favourites extends Component {
         return(
 
             <div className= "body">
-                <AppNavbar/>
 
                 {this.props.loading ? <div>Loading...</div> : <div className="favouritesList">{this.gettingFavouritesList()}</div>}
 
