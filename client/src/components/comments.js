@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {fetchComments} from '../store/actions/commentsAction';
-import {Card, CardBody, CardTitle, CardText, CardImg}from 'reactstrap' ;
+import {Card, CardBody, CardTitle, CardText}from 'reactstrap' ;
 
 class Comments extends Component {
 
@@ -25,9 +25,11 @@ class Comments extends Component {
         let commentsList = this.props.comments.map(comment => {
             return (
                 <Card>
-                    <CardImg width="25%" src={comment.user.img} alt="user image" />
                         <CardBody>
-                            <CardTitle><strong>{comment.user.userName}</strong>({comment.user.country})</CardTitle>
+                            <CardBody className="userContainer">
+                                <img width="25%" src={comment.user.img} alt="user image" />
+                                <CardTitle><strong>{comment.user.userName + ' '}</strong>({ comment.user.country})</CardTitle>
+                            </CardBody>
                             <CardText>{comment.body}</CardText>
                             <CardText>
                                 <small className="text-muted">Comment posted by {comment.user.userName} on {comment.date}</small>
@@ -37,6 +39,11 @@ class Comments extends Component {
             )
             
         })
+        if(commentsList.length === 0){
+            commentsList =(
+                <p>No comments added yet</p>
+            )
+        }
         return commentsList
     }
 
@@ -44,6 +51,7 @@ class Comments extends Component {
     render() {
         return (
             <div className="hello">
+                <h2>Comments</h2>
                 {this.getComments()}  
             </div>
         )
@@ -53,7 +61,7 @@ class Comments extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        comments: state.comments.comments
+        comments: state.comments.comments,
     }
 }
 const mapDispatchToProps = (dispatch) => {

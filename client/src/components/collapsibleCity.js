@@ -22,7 +22,7 @@ class CollapsibleCity extends Component{
                         <Fragment>
                                 <div className="activityContainer">
                                     <img className="activityImage" src={activity.img} alt=""/> 
-                                    <div className="activityName">{activity.title}</div>
+                                    <CardTitle className="activityName links">{activity.title}</CardTitle>
                                 </div>     
                         </Fragment>
                     )
@@ -58,7 +58,7 @@ class CollapsibleCity extends Component{
                     <CardBody className="accordion-heading">
                         <div className="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">
                             <CardTitle className="title">{itinerary.title}</CardTitle>
-                            <CardSubtitle className="infoContainer"><p>RATING: {itinerary.rating}'| DURATION:{itinerary.duration}| PRICE:{itinerary.price}</p></CardSubtitle>
+                            <CardSubtitle className="infoContainer"><p>RATING: {' ' + itinerary.rating + ' '}| DURATION:{' ' +itinerary.duration+ ' '}| PRICE:{' ' + itinerary.price+ ' '}</p></CardSubtitle>
                                 <span className='hello'>
                                 {this.gettingItinerariesList()} 
                                 </span>
@@ -67,13 +67,15 @@ class CollapsibleCity extends Component{
                                 </div>
                         </div>
                     </CardBody>
-                    <Card className="accordionBody">
-                        {this.getRenderedActivities()}
+                    <div className="accordionBody">
+                        <div className="groupOfActivities">
+                            {this.getRenderedActivities()}
+                        </div>
                         {this.getCommentsList()}
-                    </Card>
+                    </div>
                     <CardBody>
                         <CardLink className="links" onClick={this.toggle}>{this.state.isOpen ? 'Read Less' : 'Read More'}</CardLink>
-                        <CardLink className="links" href="/cities">Go back to Cities</CardLink>
+                        <CardLink className="links" href="/cities"> | Go back to Cities</CardLink>
                     </CardBody>  
                 </CardSubtitle>   
             </div>

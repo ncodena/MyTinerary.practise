@@ -14,11 +14,12 @@
 }
 
 .links{
-    
-
+    text-decoration: none;
     color: whitesmoke;
 
 }
+
+
 
 .imageContainer{
     display: flex;
@@ -69,8 +70,15 @@
 .accordionBody{
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    background-color: rgb(143, 0, 0);
+    flex-direction: column;
     margin-top: 6%;
+}
+
+.groupOfActivities{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
 }
 .activityImage{
     width: 87%;
@@ -82,7 +90,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
+
+.userContainer{
+    display: flex;
+    flex-direction: row;
+}
+
 .activityName{
     display: flex;
     justify-content: center;
