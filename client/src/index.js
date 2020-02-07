@@ -8,6 +8,7 @@ import SignUp from './views/Form';
 import LogIn from './views/Login';
 import Favourites from './views/Favourites';
 import dummyButton from './views/Testbutton';
+import AppNavbar from './components/appNavbar';
 import logger from 'redux-logger';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -33,6 +34,7 @@ const router = (
     <Router>
     <div className="backgroundContainer">
         <div className="darkFilter"></div>
+      <AppNavbar/>
       <Route exact path="/" component={Landing} />
       <Route exact path="/cities" component={Cities} />
       <Route path="/itineraries" component={Itineraries} />

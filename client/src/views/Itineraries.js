@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../assets/styles/Itineraries.css';
 import { connect } from 'react-redux';
-import AppNavbar from './../components/appNavbar';
 import CityCard from '../components/cityCard.js';
 import CollapsibleCity from '../components/collapsibleCity.js';
 
@@ -17,12 +16,6 @@ class Itineraries extends Component{
     }
     componentDidMount(){
         console.log("from componentDidMount: ", this.props.itineraries)
-
-
-
-        // this.props.fetchCities()
-        // this.props.fetchItineraries()
-        //     .then(()=> console.log(this.props.cities))
     
     } 
 
@@ -55,18 +48,18 @@ class Itineraries extends Component{
         
         return(
             <div className= "body">
-                <AppNavbar/>
                 <div className="cityChildComponent">
                     <CityCard city={this.props.city} />
                 </div>
                 <div className="dropdownContainer">
                     {this.gettingItinerariesList()} 
                 </div>
-        </div>
+            </div>
         )
     };  
 
 }
+
 const mapStatetoProps = (state) => {
     return {
         itineraries: state.itineraries.itineraries,

@@ -1,5 +1,4 @@
 import React from 'react';
-import AppNavbar from './../components/appNavbar';
 import arrow from '../assets/images/circled-right-2.png';
 import { Link } from 'react-router-dom'
 import '../assets/styles/Landing.css';
@@ -10,7 +9,6 @@ render() {
 return (
 <div className="LandingPage">
   <div className="fullBody">
-    <AppNavbar/>
     <div className="landing-body">
       <p className="introText">Find your perfect trip, designed by insiders and love their cities.</p>
       <h2>Start browsing</h2>
